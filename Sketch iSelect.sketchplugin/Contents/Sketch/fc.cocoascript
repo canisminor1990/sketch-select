@@ -1,0 +1,73 @@
+var iterateThroughLayers = function(context, attr, callback)
+{
+	var doc = context.document;
+	var page = doc.currentPage();
+	var artboard = page.currentArtboard(); 
+	if(selectInAllArtboards || !artboard)
+	{
+		for (var j = 0; j < page.artboards().count(); j++) {
+			var artboard = page.artboards().objectAtIndex(j);
+
+			for (var k = 0; k < artboard.layers().count(); k++) {
+				var layer = artboard.layers().objectAtIndex(k);
+
+				handleObject(layer, attr, callback);
+
+			}
+		}
+	}
+	else
+	{
+		for (var k = 0; k < artboard.layers().count(); k++) {
+			var layer = artboard.layers().objectAtIndex(k);
+
+			handleObject(layer, attr, callback);
+
+		}
+	}
+}
+
+var handleObject = function(obj, color, fn)
+{
+	// 检测是否是切片
+	if([obj class] == MSSliceLayer) {
+		return;
+	}
+	// 检测是否是群组
+	if([obj class] == MSLayerGroup) {
+		for(var i = 0; i < obj.layers().count(); i++)
+		{
+			layer = obj.layers().objectAtIndex(i);
+			
+			handleObject(layer, color, fn);
+		}
+		return;
+	}
+	var sif = fn.call(sif, obj, color);
+}
+
+var firstVisibleFill = function(layer)
+{
+	for(var i = 0; i < layer.style().fills().count(); i++)
+	{
+		var fill = layer.style().fills().objectAtIndex(i);
+		if(fill.isEnabled())
+		{
+			return fill;
+		}
+	}
+	return false;
+}
+
+var firstVisibleBorder = function(layer)
+{
+	for(var i = 0; i < layer.style().borders().count(); i++)
+	{
+		var border = layer.style().borders().objectAtIndex(i);
+		if(border.isEnabled())
+		{
+			return border;
+		}
+	}
+	return false;
+}

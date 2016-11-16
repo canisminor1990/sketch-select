@@ -1,0 +1,121 @@
+@import 'fc.cocoascript';
+var callback = [];
+callback =
+	[{
+		name: "Fill",
+		fc: [function(layer, selectedLayer) {
+			var color = firstVisibleFill(selectedLayer).color();
+
+			if (layer.style().fills().count() > 0) {
+				for (var i = 0; i < layer.style().fills().count(); i++) {
+					if (layer.style().fills().objectAtIndex(i).color().isEqual(color) && layer.style().fills().objectAtIndex(i).isEnabled() && layer.isVisible()) {
+						[layer select: true byExpandingSelection: true];
+					}
+				}
+
+			}
+		}]
+	}, {
+		name: "Border",
+		fc: [function(layer, selectedLayer) {
+			var color = firstVisibleBorder(selectedLayer).color();
+
+			if (layer.style().borders().count() > 0) {
+				for (var i = 0; i < layer.style().borders().count(); i++) {
+					if (layer.style().borders().objectAtIndex(i).color().isEqual(color) && layer.style().borders().objectAtIndex(i).isEnabled() && layer.isVisible()) {
+						[layer select: true byExpandingSelection: true];
+					}
+				}
+
+			}
+		}]
+	}, {
+		name: "BorderThickness",
+		fc: [function(layer, selectedLayer) {
+			var thickness = firstVisibleBorder(selectedLayer).thickness();
+
+			if (layer.style().borders().count() > 0) {
+				for (var i = 0; i < layer.style().borders().count(); i++) {
+					if (layer.style().borders().objectAtIndex(i).thickness() == thickness && layer.style().borders().objectAtIndex(i).isEnabled() && layer.isVisible()) {
+						[layer select: true byExpandingSelection: true];
+					}
+				}
+
+			}
+		}]
+	}, {
+		name: "Opacity",
+		fc: [function(layer, selectedLayer) {
+			if (selectedLayer.style().contextSettings().opacity() == layer.style().contextSettings().opacity() && layer.isVisible()) {
+				[layer select: true byExpandingSelection: true];
+			}
+		}]
+	}, {
+		name: "BlendMode",
+		fc: [function(layer, selectedLayer) {
+			if (selectedLayer.style().contextSettings().blendMode() == layer.style().contextSettings().blendMode() && layer.isVisible()) {
+				[layer select: true byExpandingSelection: true];
+			}
+		}]
+	}, {
+		name: "FontStyle",
+		fc: [function(layer, selectedLayer) {
+			if ([layer class] == MSTextLayer) {
+				var str1 = layer.CSSAttributeString().replace(/^\s+|\s+$/g, "");
+				var str2 = selectedLayer.CSSAttributeString().replace(/^\s+|\s+$/g, "");
+				if (str1 == str2) {
+					[layer select: true byExpandingSelection: true];
+				}
+			}
+		}]
+	}, {
+		name: "FontFamily",
+		fc: [function(layer, selectedLayer) {
+			if ([layer class] == MSTextLayer) {
+				if (layer.fontPostscriptName() == selectedLayer.fontPostscriptName()) {
+					[layer select: true byExpandingSelection: true];
+				}
+			}
+		}]
+	}, {
+		name: "TextString",
+		fc: [function(layer, selectedLayer) {
+			if ([layer class] == MSTextLayer) {
+				var str1 = layer.stringValue().replace(/^\s+|\s+$/g, "");
+				var str2 = selectedLayer.stringValue().replace(/^\s+|\s+$/g, "");
+				if (str1 == str2) {
+					[layer select: true byExpandingSelection: true];
+				}
+			}
+		}]
+	}, {
+		name: "LayerName",
+		fc: [function(layer, selectedLayer) {
+				var str1 = layer.name().replace(/^\s+|\s+$/g, "");
+				var str2 = selectedLayer.name().replace(/^\s+|\s+$/g, "");
+				if (str1 == str2) {
+					[layer select: true byExpandingSelection: true];
+				}
+		}]
+	}, {
+		name: "TextLayers",
+		fc: [function(layer, selectedLayer) {
+			if ([layer class] == MSTextLayer) {
+				[layer select: true byExpandingSelection: true];
+			}
+		}]
+	}, {
+		name: "HiddenLayers",
+		fc: [function(layer, selectedLayer) {
+			if (layer.isVisible() == false) {
+				[layer select: true byExpandingSelection: true];
+			}
+		}]
+	}, {
+		name: "LockedLayers",
+		fc: [function(layer, selectedLayer) {
+			if (layer.isLocked() == true) {
+				[layer select: true byExpandingSelection: true];
+			}
+		}]
+	}]
