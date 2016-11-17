@@ -15,3 +15,6 @@ Make it much more convenient to select layers with similar attributes,**Support 
 
 ##Contact
 * Email <canisminor1990@gmail.com>
+
+## Thanks to
+* [sketch-select-similar-layers](https://github.com/wonderbit/sketch-select-similar-layers)
