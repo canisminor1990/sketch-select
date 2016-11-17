@@ -7,12 +7,13 @@ Make it much more convenient to select layers with similar attributes,**Support 
 2. Open the `SketchSelect.sketchplugin`
 
 ## Preview
-* Select a layer and press `Command`+`Shift`+`F` on keyboard to callout the plugin dialog.
+Select a layer and press `Command`+`Shift`+`F` on keyboard to callout the plugin dialog.
 ![](http://i.imgur.com/Hly5g1r.png)
 
-* [Option] Select in all artboards
+[Option] Select in all artboards
 
-You can choose wether to select in all artboards or just in one artboard.
+* You can choose wether to select layers in all artboards or just in one artboard.
+
 ![](http://i.imgur.com/xkma6Lb.png)
 
 ##Contributors
