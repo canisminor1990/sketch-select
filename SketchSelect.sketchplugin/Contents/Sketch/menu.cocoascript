@@ -35,7 +35,7 @@ AltDialog.prototype = {
    			artboardBox.setButtonType(NSSwitchButton);
     		artboardBox.setState(false);
     		// 初始化窗体
-			altWin.setMessageText("iSelect");
+			altWin.setMessageText("Sketch Select");
 			altWin.setInformativeText("Select all layers with same:");
 			altWin.addAccessoryView(selectBox);
     		altWin.addAccessoryView(artboardBox);
@@ -61,10 +61,10 @@ var onRun = function(context) {
 		var selectedLayer = context.selection.firstObject();
 		var fill = firstVisibleFill(selectedLayer);
 		var border = firstVisibleBorder(selectedLayer);
-		[doc showMessage: "iSelect: Select same " + message];
+		[doc showMessage: "Sketch Select: Select same " + message];
 		iterateThroughLayers(context, selectedLayer, fc);
 	} else {
 		// 没有选择任何图层
-		[doc showMessage: "iSelect: You need to select at least one layer"];
+		[doc showMessage: "Sketch Select: You need to select at least one layer..."];
 	}
 }

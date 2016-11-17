@@ -1,0 +1,22 @@
+{
+  "author": "Canis Minor",
+  "commands": [{
+    "script": "menu.cocoascript",
+    "handler": "onRun",
+    "shortcut": "command shift f",
+    "name": "Sketch Select",
+    "identifier": "sketch-select"
+  }],
+  "menu": {
+    "isRoot": true,
+    "items": [
+      "sketch-select"
+    ],
+    "title": "Sketch Select"
+  },
+  "identifier": "me.canisminor.SketchSelect",
+  "version": "1.0",
+  "description": "Make it convenient to select layers with similar attributes.",
+  "authorEmail": "canisminor@foxmail.com",
+  "name": "Sketch Select"
+}
