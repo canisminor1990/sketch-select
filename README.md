@@ -22,5 +22,5 @@ Select a layer and press `Command`+`Shift`+`F` on keyboard to callout the plugin
 ##Contact
 * Email <canisminor1990@gmail.com>
 
-## Thanks to
+## Thanks
 * wonderbit [sketch-select-similar-layers](https://github.com/wonderbit/sketch-select-similar-layers)
