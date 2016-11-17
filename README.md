@@ -11,6 +11,7 @@ Make it much more convenient to select layers with similar attributes,**Support 
 ![](http://i.imgur.com/Hly5g1r.png)
 
 * [Option] Select in all artboards
+
 You can choose wether to select in all artboards or just in one artboard.
 ![](http://i.imgur.com/xkma6Lb.png)
 
