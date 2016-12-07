@@ -58,6 +58,17 @@ callback =
 			}
 		}]
 	}, {
+		name: "FontColor",
+		fc: [function(layer, selectedLayer) {
+			if ([layer class] == MSTextLayer) {
+				var color1 = toRgba(layer.textColor());
+				var color2 = toRgba(selectedLayer.textColor());
+				if (color1 == color2) {
+					[layer select: true byExpandingSelection: true];
+				}
+			}
+		}]
+	}, {
 		name: "FontStyle",
 		fc: [function(layer, selectedLayer) {
 			if ([layer class] == MSTextLayer) {
@@ -119,3 +130,7 @@ callback =
 			}
 		}]
 	}]
+
+var toRgba = function(color) {
+  return "rgba(" + String(Math.ceil(color.red().toFixed(2) * 255)) + ", " + String(Math.ceil(color.green().toFixed(2) * 255)) + ", " + String(Math.ceil(color.blue().toFixed(2) * 255)) + "," + String(color.alpha().toFixed(2)) + ")";
+};
