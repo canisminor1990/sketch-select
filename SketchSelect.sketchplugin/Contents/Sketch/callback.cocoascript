@@ -109,6 +109,17 @@ callback =
 				}
 		}]
 	}, {
+		name: "SymbolName",
+		fc: [function(layer, selectedLayer) {
+			if (layer.isKindOfClass(MSSymbolInstance)) {
+				var str1 = layer.symbolMaster().name();
+				var str2 = selectedLayer.symbolMaster().name();
+				if (str1 == str2) {
+					[layer select: true byExpandingSelection: true];
+				}
+			}
+		}]
+	}, {
 		name: "TextLayers",
 		fc: [function(layer, selectedLayer) {
 			if ([layer class] == MSTextLayer) {
@@ -130,7 +141,7 @@ callback =
 			}
 		}]
 	}, {
-		name: "Symbols",
+		name: "SymbolLayers",
 		fc: [function(layer, selectedLayer) {
 			if (layer.isKindOfClass(MSSymbolInstance)) {
 				[layer select: true byExpandingSelection: true];
