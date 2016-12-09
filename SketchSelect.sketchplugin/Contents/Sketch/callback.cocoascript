@@ -118,4 +118,11 @@ callback =
 				[layer select: true byExpandingSelection: true];
 			}
 		}]
+	}, {
+		name: "Symbols",
+		fc: [function(layer, selectedLayer) {
+			if (layer.isKindOfClass(MSSymbolInstance)) {
+				[layer select: true byExpandingSelection: true];
+			}
+		}]
 	}]
