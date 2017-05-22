@@ -16,11 +16,11 @@ Select a layer and press `Command`+`Shift`+`F` on keyboard to callout the plugin
 
 ![](http://i.imgur.com/xkma6Lb.png)
 
-##Contributors
+## Contributors
 * [canisminor1990](https://github.com/canisminor1990) # Author
 * [sebastienwozny](https://github.com/sebastienwozny)
 
-##Contact
+## Contact
 * Email <canisminor1990@gmail.com>
 
 ## Thanks
