@@ -1,4 +1,6 @@
 # Sketch Select
+[![Download from Sketchpacks.com](https://badges.sketchpacks.com/plugins/me.canisminor.SketchSelect/version.svg)](https://api.sketchpacks.com/v1/plugins/me.canisminor.SketchSelect/download) [![Compatible Sketch Version](https://badges.sketchpacks.com/plugins/me.canisminor.SketchSelect/compatibility.svg)](https://sketchpacks.com/canisminor1990/sketch-select)
+
 Make it much more convenient to select layers with similar attributes,**Support Sketch 41.x**.
 ![](http://i.imgur.com/iwedsd2.png)
 
