@@ -32,8 +32,21 @@ Make it much more convenient to select layers with similar attributes
 
 ## Installing Plugins
 
+### Direct download
+
 1. [Download the ZIP file](https://github.com/canisminor1990/sketch-select/archive/master.zip) and unzip
 2. Open the `SketchSelect.sketchplugin`
+
+### Install with Sketchpacks
+
+<a href="https://sketchpacks.com/canisminor1990/sketch-select/install"><img src="https://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png" alt="Install sketch-select with Sketchpacks" width="160"></a>
+
+### Install with Runner
+
+1. Press `⌘` + `'` open Runner window;
+2. Switch to `install` tab;
+3. Type `SketchSelect`;
+4. Select `Sketch Select` item and press `Return`.
 
 ## Preview
 
