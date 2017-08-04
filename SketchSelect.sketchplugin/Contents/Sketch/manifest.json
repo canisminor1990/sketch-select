@@ -15,6 +15,7 @@
     "title": "Sketch Select"
   },
   "identifier": "me.canisminor.SketchSelect",
+  "appcast": "https://api.sketchpacks.com/v1/plugins/me.canisminor.SketchSelect/appcast",
   "version": "1.0",
   "description": "Make it convenient to select layers with similar attributes.",
   "authorEmail": "canisminor@foxmail.com",
