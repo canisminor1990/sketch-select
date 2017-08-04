@@ -26,14 +26,25 @@
 - **HiddenLayers** - 隐藏图层
 - **LockedLayers** - 锁定图层
 
-<a href="http://bit.ly/SketchRunnerWebsite">
-  <img src="http://sketchrunner.com/img/badge_white.png" width="160">
-</a>
-
 ## 安装插件
+
+### 直接下载
 
 1. [下载ZIP包](https://github.com/canisminor1990/sketch-select/archive/master.zip) 并解压
 2. 打开 `SketchSelect.sketchplugin` 即可安装
+
+### 使用 Sketchpacks 安装
+
+<a href="https://sketchpacks.com/canisminor1990/sketch-select/install"><img src="https://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png" alt="Install sketch-select with Sketchpacks" width="160"></a>
+
+### 使用 Runner 安装
+
+1. `⌘` + `'` 打开 Runner;
+2. 切换至 `install` 标签;
+3. 输入 `SketchSelect`;
+4. 选择 `Sketch Select` 并回车.
+
+<a href="http://bit.ly/SketchRunnerWebsite"><img src="http://bit.ly/RunnerBadgeBlue" alt="Works with Sketch Runner" width="160"></a>
 
 ## 示例
 
