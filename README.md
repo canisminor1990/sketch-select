@@ -1,5 +1,5 @@
 # Sketch Select
-![](https://badges.sketchpacks.com/plugins/cm.sketch.select/version.svg)
+![](https://badges.sketchpacks.com/plugins/cm.sketch.select/version.svg) [中文说明](README_zh.md)
 
 <img src="https://o4j4l4n7h.qnssl.com/2017-08-04-cover_select.png" width="500">
 
