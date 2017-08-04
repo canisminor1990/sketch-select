@@ -1,6 +1,5 @@
 {
   "name": "Sketch Select",
-  "version": "1.1",
   "description": "Make it convenient to select layers with similar attributes.",
   "commands": [{
     "name": "Sketch Select",
@@ -16,7 +15,9 @@
       "sketch-select"
     ]
   },
+  "version": "1.1",
   "identifier": "cm.sketch.select",
+  "icon": "https://o4j4l4n7h.qnssl.com/2017-08-04-SketchSelect-Icon.png",
   "author": "Canis Minor",
   "authorEmail": "i@canisminor.cc",
   "homepage"   : "https://github.com/canisminor1990/sketch-select",
