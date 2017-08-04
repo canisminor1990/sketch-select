@@ -1,23 +1,24 @@
 {
-  "author": "Canis Minor",
+  "name": "Sketch Select",
+  "version": "1.1",
+  "description": "Make it convenient to select layers with similar attributes.",
   "commands": [{
+    "name": "Sketch Select",
     "script": "menu.cocoascript",
     "handler": "onRun",
     "shortcut": "command shift f",
-    "name": "Sketch Select",
     "identifier": "sketch-select"
   }],
   "menu": {
+    "title": "Sketch Select",
     "isRoot": true,
     "items": [
       "sketch-select"
-    ],
-    "title": "Sketch Select"
+    ]
   },
-  "identifier": "me.canisminor.SketchSelect",
-  "appcast": "https://api.sketchpacks.com/v1/plugins/me.canisminor.SketchSelect/appcast",
-  "version": "1.0",
-  "description": "Make it convenient to select layers with similar attributes.",
-  "authorEmail": "canisminor@foxmail.com",
-  "name": "Sketch Select"
+  "identifier": "cm.sketch.select",
+  "author": "Canis Minor",
+  "authorEmail": "i@canisminor.cc",
+  "homepage"   : "https://github.com/canisminor1990/sketch-select",
+  "appcast": "https://api.sketchpacks.com/v1/plugins/cm.sketch.select/appcast"
 }
