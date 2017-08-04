@@ -26,10 +26,6 @@ Make it much more convenient to select layers with similar attributes
 - HiddenLayers
 - LockedLayers
 
-<a href="http://bit.ly/SketchRunnerWebsite">
-  <img src="http://sketchrunner.com/img/badge_white.png" width="160">
-</a>
-
 ## Installing Plugins
 
 ### Direct download
@@ -47,6 +43,8 @@ Make it much more convenient to select layers with similar attributes
 2. Switch to `install` tab;
 3. Type `SketchSelect`;
 4. Select `Sketch Select` item and press `Return`.
+
+<a href="http://bit.ly/SketchRunnerWebsite"><img src="http://bit.ly/RunnerBadgeBlue" alt="Works with Sketch Runner" width="160"></a>
 
 ## Preview
 
