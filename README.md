@@ -1,7 +1,7 @@
 # Sketch Select
 ![](https://badges.sketchpacks.com/plugins/cm.sketch.select/version.svg)
 
-![](https://o4j4l4n7h.qnssl.com/2017-08-04-cover_select.png)
+<img src="https://o4j4l4n7h.qnssl.com/2017-08-04-cover_select.png" width="500">
 
 Make it much more convenient to select layers with similar attributes
 
