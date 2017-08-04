@@ -4,6 +4,10 @@
 Make it much more convenient to select layers with similar attributes,**Support Sketch 41.x**.
 ![](http://i.imgur.com/iwedsd2.png)
 
+<a href="http://bit.ly/SketchRunnerWebsite">
+  <img src="http://sketchrunner.com/img/badge_white.png" width="160">
+</a>
+
 ## Installing Plugins
 1. [Download the ZIP file](https://github.com/canisminor1990/sketch-select/archive/master.zip) and unzip
 2. Open the `SketchSelect.sketchplugin`
