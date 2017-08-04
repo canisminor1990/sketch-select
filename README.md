@@ -18,12 +18,10 @@ Select a layer and press `Command`+`Shift`+`F` on keyboard to callout the plugin
 
 ![](http://i.imgur.com/xkma6Lb.png)
 
-## Contributors
-* [canisminor1990](https://github.com/canisminor1990) # Author
-* [sebastienwozny](https://github.com/sebastienwozny)
-
 ## Contact
-* Email <canisminor1990@gmail.com>
+* Author [canisminor1990](https://github.com/canisminor1990)
+* Email <i@canisminor.cc>
 
-## Thanks
-* wonderbit [sketch-select-similar-layers](https://github.com/wonderbit/sketch-select-similar-layers)
+## Contributors
+* [sebastienwozny](https://github.com/sebastienwozny)
+* [wonderbit](https://github.com/wonderbit/sketch-select-similar-layers)
