@@ -69,6 +69,15 @@ callback =
 			}
 		}]
 	}, {
+		name: "FontSize",
+		fc: [function(layer, selectedLayer) {
+			if ([layer class] == MSTextLayer) {
+				if (selectedLayer.fontSize() == layer.fontSize()) {
+					[layer select: true byExpandingSelection: true];
+				}
+			}
+		}]
+	}, {
 		name: "FontStyle",
 		fc: [function(layer, selectedLayer) {
 			if ([layer class] == MSTextLayer) {
