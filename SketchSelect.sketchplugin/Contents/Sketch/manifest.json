@@ -3,7 +3,7 @@
   "description": "Make it convenient to select layers with similar attributes.",
   "commands": [{
     "name": "Sketch Select",
-    "script": "menu.cocoascript",
+    "script": "script.js",
     "handler": "onRun",
     "shortcut": "command shift f",
     "identifier": "sketch-select"

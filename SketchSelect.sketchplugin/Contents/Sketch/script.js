@@ -1,7 +1,5 @@
 @import 'callback.cocoascript';
 // 初始化
-var ctx = null;
-var doc = null;
 var selectInAllArtboards = null;
 var message = null;
 var fc = null;
@@ -52,19 +50,19 @@ AltDialog.prototype = {
 	}
 // onRun
 var onRun = function(context) {
-	var selectedLayer = context.selection;
-	var selectedLayerCount = [selectedLayer count];
-	ctx = context;
-	doc = context.document;
-	if (selectedLayerCount > 0) {
-		new AltDialog().setup();
-		var selectedLayer = context.selection.firstObject();
-		var fill = firstVisibleFill(selectedLayer);
-		var border = firstVisibleBorder(selectedLayer);
-		[doc showMessage: "Sketch Select: Select same " + message];
-		iterateThroughLayers(context, selectedLayer, fc);
-	} else {
-		// 没有选择任何图层
-		[doc showMessage: "Sketch Select: You need to select at least one layer..."];
-	}
+	var sketch = context.api()
+	let { selectedLayers } = sketch.selectedDocument;
+	selectedLayers.iterate(function(layer) {
+		layer.remove()
+		sketch.alert(layer,"log")
+
+	})
+
+
+	new AltDialog().setup();
+
+	var selectedLayer = selection[0];
+	var fill = firstVisibleFill(selectedLayer);
+	var border = firstVisibleBorder(selectedLayer);
+	iterateThroughLayers(context, selectedLayer, fc);
 }

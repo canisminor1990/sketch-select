@@ -30,11 +30,11 @@ var iterateThroughLayers = function(context, attr, callback)
 var handleObject = function(obj, color, fn)
 {
 	// 检测是否是切片
-	if([obj class] == MSSliceLayer) {
+	if(obj.class() == MSSliceLayer) {
 		return;
 	}
 	// 检测是否是群组
-	if([obj class] == MSLayerGroup) {
+	if(obj.class() == MSLayerGroup) {
 		for(var i = 0; i < obj.layers().count(); i++)
 		{
 			layer = obj.layers().objectAtIndex(i);

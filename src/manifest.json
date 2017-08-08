@@ -1,0 +1,18 @@
+{
+	"icon": "https://o4j4l4n7h.qnssl.com/2017-08-04-SketchSelect-Icon.png",
+	"identifier": "cm.sketch.selectdev",
+	"compatibleVersion": 3,
+	"bundleVersion": 1,
+	"commands": [{
+		"name": "Sketch Select Dev",
+		"script": "./script.js",
+		"identifier": "sketch-select-dev"
+	}],
+	"menu": {
+		"title": "Sketch Select Dev",
+		"isRoot": true,
+		"items": [
+			"sketch-select-dev"
+		]
+	}
+}

@@ -1,0 +1,37 @@
+{
+	"name": "sketch-select-dev",
+	"version": "1.2.0",
+	"description": "Make it convenient to select layers with similar attributes.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "skpm build",
+		"watch": "skpm build --watch",
+		"publish": "skpm publish"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/canisminor1990/sketch-select.git"
+	},
+	"author": "Canis Minor",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/canisminor1990/sketch-select/issues"
+	},
+	"homepage": "https://github.com/canisminor1990/sketch-select",
+	"appcast": "https://api.sketchpacks.com/v1/plugins/cm.sketch.select/appcast",
+	"engines": {
+		"sketch": ">=3.0"
+	},
+	"devDependencies": {
+		"skpm": "^0.10.5"
+	},
+	"skpm": {
+		"manifest": "src/manifest.json",
+		"main": "plugin.sketchplugin"
+	},
+	"dependencies": {
+		"lodash": "^4.17.4",
+		"sketch-api": "https://github.com/BohemianCoding/SketchAPI.git"
+	}
+}

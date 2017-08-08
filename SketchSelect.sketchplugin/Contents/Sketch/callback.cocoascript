@@ -60,7 +60,7 @@ callback =
 	}, {
 		name: "FontColor",
 		fc: [function(layer, selectedLayer) {
-			if ([layer class] == MSTextLayer) {
+			if (layer.class() == MSTextLayer) {
 				var color1 = toRgba(layer.textColor());
 				var color2 = toRgba(selectedLayer.textColor());
 				if (color1 == color2) {
@@ -71,7 +71,7 @@ callback =
 	}, {
 		name: "FontSize",
 		fc: [function(layer, selectedLayer) {
-			if ([layer class] == MSTextLayer) {
+			if (layer.class() == MSTextLayer) {
 				if (selectedLayer.fontSize() == layer.fontSize()) {
 					[layer select: true byExpandingSelection: true];
 				}
@@ -80,7 +80,7 @@ callback =
 	}, {
 		name: "FontStyle",
 		fc: [function(layer, selectedLayer) {
-			if ([layer class] == MSTextLayer) {
+			if (layer.class() == MSTextLayer) {
 				var str1 = layer.CSSAttributeString().replace(/^\s+|\s+$/g, "");
 				var str2 = selectedLayer.CSSAttributeString().replace(/^\s+|\s+$/g, "");
 				if (str1 == str2) {
@@ -91,7 +91,7 @@ callback =
 	}, {
 		name: "FontFamily",
 		fc: [function(layer, selectedLayer) {
-			if ([layer class] == MSTextLayer) {
+			if (layer.class() == MSTextLayer) {
 				if (layer.fontPostscriptName() == selectedLayer.fontPostscriptName()) {
 					[layer select: true byExpandingSelection: true];
 				}
@@ -100,7 +100,7 @@ callback =
 	}, {
 		name: "TextString",
 		fc: [function(layer, selectedLayer) {
-			if ([layer class] == MSTextLayer) {
+			if (layer.class() == MSTextLayer) {
 				var str1 = layer.stringValue().replace(/^\s+|\s+$/g, "");
 				var str2 = selectedLayer.stringValue().replace(/^\s+|\s+$/g, "");
 				if (str1 == str2) {
@@ -131,8 +131,8 @@ callback =
 	}, {
 		name: "TextLayers",
 		fc: [function(layer, selectedLayer) {
-			if ([layer class] == MSTextLayer) {
-				[layer select: true byExpandingSelection: true];
+			if (layer.class() == MSTextLayer) {
+				layer.addToSelection()
 			}
 		}]
 	}, {
