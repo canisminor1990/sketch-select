@@ -1,25 +1,27 @@
 {
-  "name": "Sketch Select",
-  "description": "Make it convenient to select layers with similar attributes.",
-  "commands": [{
-    "name": "Sketch Select",
-    "script": "script.js",
-    "handler": "onRun",
-    "shortcut": "command shift f",
-    "identifier": "sketch-select"
-  }],
+  "icon": "https://o4j4l4n7h.qnssl.com/2017-08-04-SketchSelect-Icon.png",
+  "identifier": "cm.sketch.selectdev",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Sketch Select Dev",
+      "script": "index.js",
+      "identifier": "sketch-select-dev"
+    }
+  ],
   "menu": {
-    "title": "Sketch Select",
+    "title": "Sketch Select Dev",
     "isRoot": true,
     "items": [
-      "sketch-select"
+      "sketch-select-dev"
     ]
   },
-  "version": "1.1",
-  "identifier": "cm.sketch.select",
-  "icon": "https://o4j4l4n7h.qnssl.com/2017-08-04-SketchSelect-Icon.png",
-  "author": "Canis Minor",
-  "authorEmail": "i@canisminor.cc",
-  "homepage"   : "https://github.com/canisminor1990/sketch-select",
-  "appcast": "https://api.sketchpacks.com/v1/plugins/cm.sketch.select/appcast"
+  "version": "1.2.0",
+  "description": "Make it convenient to select layers with similar attributes.",
+  "homepage": "https://github.com/canisminor1990/sketch-select",
+  "name": "sketch-select-dev",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://api.sketchpacks.com/v1/plugins/cm.sketch.select/appcast",
+  "author": "Canis Minor"
 }

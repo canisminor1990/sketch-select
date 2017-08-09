@@ -1,38 +1,33 @@
-const all = {
-	All: (layer, configLayer) => {}
-};
-
 const layers = {
-	LayerName      : (layer, configLayer) => {},
-	Width          : (layer, configLayer) => {},
-	Height         : (layer, configLayer) => {},
-	Fill           : (layer, configLayer) => {},
-	BorderColor    : (layer, configLayer) => {},
-	BorderThickness: (layer, configLayer) => {},
-	Opacity        : (layer, configLayer) => {},
-	BlendMode      : (layer, configLayer) => {}
+	LayerName      : (layer, configLayer) => {return layer.name === configLayer.name;},
+	Width          : (layer, configLayer) => {return true;},
+	Height         : (layer, configLayer) => {return true;},
+	Fill           : (layer, configLayer) => {return true;},
+	BorderColor    : (layer, configLayer) => {return true;},
+	BorderThickness: (layer, configLayer) => {return true;},
+	Opacity        : (layer, configLayer) => {return true;},
+	BlendMode      : (layer, configLayer) => {return true;}
 
 };
 
 const textLayers = {
-	TextString: (layer, configLayer) => {},
-	FontFamily: (layer, configLayer) => {},
-	FontSize  : (layer, configLayer) => {},
-	FontColor : (layer, configLayer) => {}
+	TextString: (layer, configLayer) => {return true;},
+	FontFamily: (layer, configLayer) => {return true;},
+	FontSize  : (layer, configLayer) => {return true;},
+	FontColor : (layer, configLayer) => {return true;}
 };
 
 const layerTypes = {
-	All  : (layer, configLayer) => {},
-	TextLayers  : (layer, configLayer) => {},
-	HiddenLayers: (layer, configLayer) => {},
-	LockedLayers: (layer, configLayer) => {},
-	SymbolLayers: (layer, configLayer) => {},
-	Exportable  : (layer, configLayer) => {}
+	AllTypes    : (layer, configLayer) => {return true;},
+	TextLayers  : (layer, configLayer) => {return layer.isText;},
+	HiddenLayers: (layer, configLayer) => {return true;},
+	LockedLayers: (layer, configLayer) => {return true;},
+	SymbolLayers: (layer, configLayer) => {return true;},
+	Exportable  : (layer, configLayer) => {return true;}
 };
 
 export default{
-	All        : all,
-	Layers     : layers,
-	TextLayers : textLayers,
+	Layers    : layers,
+	TextLayers: textLayers,
 	LayerTypes: layerTypes
 };

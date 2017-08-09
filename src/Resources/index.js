@@ -1,64 +1,96 @@
 import React from 'react';
 import ReactDOM from'react-dom';
 import pluginCall from 'sketch-module-web-view/client';
-import { Button, Checkbox, Radio } from 'antd';
-import { keys,indexOf } from 'lodash';
+import { Button, Checkbox, Radio, Switch } from 'antd';
 import Select from '../Sketch/select';
 const CheckboxGroup = Checkbox.Group;
 const RadioGroup    = Radio.Group;
-
-let callback = {
-	select   : ["All"],
-	layerType: 'All'
-};
-
-function onChangeCheckbox(e) {
-	callback.select = e;
-	console.log('Checkbox = ', callback.select);
-	if (e.indexOf('All')) {
-
-	}
-}
-
-function onChangeRadio(e) {
-	callback.layerType = e.target.value;
-	console.log('Radio = ', callback.layerType);
-}
-
-function onClick() {
-	pluginCall('onClick', JSON.stringify(callback));
-	console.log('onClick = ', callback);
-}
-
-const Options = {
-	All       : keys(Select.All),
-	Layers    : keys(Select.Layers),
-	TextLayers: keys(Select.TextLayers),
-	LayerTypes: keys(Select.LayerTypes)
+const Options       = {
+	Layers    : Object.keys(Select.Layers),
+	TextLayers: Object.keys(Select.TextLayers),
+	LayerTypes: Object.keys(Select.LayerTypes)
 };
 
 class App extends React.Component {
-	state = {
-		disabled: false,
+	constructor(props) {
+		super(props);
+		this.state                      = {
+			Layers            : [],
+			TextLayers        : [],
+			LayerType         : ['AllTypes'],
+			SelectAllAtrboards: false,
+		};
+		this.onChangeLayers             = this.onChangeLayers.bind(this);
+		this.onChangeTextLayers         = this.onChangeTextLayers.bind(this);
+		this.onChangeLayerTypes         = this.onChangeLayerTypes.bind(this);
+		this.onChangeSelectAllAtrboards = this.onChangeSelectAllAtrboards.bind(this);
+		this.onClick                    = this.onClick.bind(this);
+	}
+
+	onChangeLayers(e) {
+		this.setState({Layers: e});
+		console.log('Layers = ', e);
 	};
+
+	onChangeTextLayers(e) {
+		this.setState({TextLayers: e});
+		console.log('TextLayers = ', e);
+	};
+
+	onChangeLayerTypes(e) {
+		this.setState({LayerType: [e.target.value]});
+		console.log('LayerType = ', [e.target.value]);
+	};
+
+	onChangeSelectAllAtrboards(e) {
+		this.setState({SelectAllAtrboards: e});
+		console.log('SelectAllAtrboards = ', e);
+	}
+
+	onClick() {
+
+		let callback = {
+			SelectAllAtrboards: this.state.SelectAllAtrboards,
+			SelectOption      : [].concat(this.state.LayerType, this.state.Layers, this.state.TextLayers)
+		};
+		pluginCall('onClick', JSON.stringify(callback));
+		console.log('onClick = ', callback);
+	};
+
 	render() {
 		return (
 			<div>
 				<div className="banner"/>
 				<div>
-					<CheckboxGroup options={Options.All} onChange={onChangeCheckbox}/>
 					<h3>Layers</h3>
-					<CheckboxGroup options={Options.Layers} onChange={onChangeCheckbox} disabled={this.state.disabled}/>
+					<CheckboxGroup
+						options={Options.Layers}
+						onChange={this.onChangeLayers}
+					/>
 					<h3>Text Layers</h3>
-					<CheckboxGroup options={Options.TextLayers} onChange={onChangeCheckbox} disabled={this.state.disabled}/>
+					<CheckboxGroup
+						options={Options.TextLayers}
+						onChange={this.onChangeTextLayers}
+					/>
 					<h3>Layer Types</h3>
-					<RadioGroup options={Options.LayerTypes} onChange={onChangeRadio} defaultValue={'All'}/>
+					<RadioGroup
+						options={Options.LayerTypes}
+						onChange={this.onChangeLayerTypes}
+						defaultValue={'AllTypes'}/>
+				</div>
+				<h3>Option</h3>
+				<div className="switch-block">
+					<Switch
+						size="small"
+						defaultChecked={false}
+						onChange={this.onChangeSelectAllAtrboards}
+					/>
+					<span>Select in all artboards</span>
 				</div>
 				<br />
-				<Button type="primary" size="large" onClick={onClick}>
+				<Button type="primary" size="large" onClick={this.onClick}>
 					Select
 				</Button>
-
 			</div>
 		);
 	}

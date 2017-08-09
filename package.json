@@ -2,7 +2,7 @@
 	"name": "sketch-select-dev",
 	"version": "1.2.0",
 	"description": "Make it convenient to select layers with similar attributes.",
-	"main": "index.js",
+	"main": "SketchSelect.sketchplugin",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "skpm build",
@@ -27,8 +27,8 @@
 		"skpm": "^0.10.5"
 	},
 	"skpm": {
-		"manifest": "src/sketch/manifest.json",
-		"main": "plugin.sketchplugin"
+		"manifest": "src/Sketch/manifest.json",
+		"main": "SketchSelect.sketchplugin"
 	},
 	"resources": [
 		"src/Resources/index.js"
