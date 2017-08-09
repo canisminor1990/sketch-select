@@ -363,7 +363,6 @@ function selectSubElement(group, configLayer, selectOption, sketch) {
 	} else {
 		var ifSelect = true;
 		selectOption.forEach(function (fnName) {
-			sketch.alert(Select[fnName], fnName);
 			if (!Select[fnName](group, configLayer)) ifSelect = false;
 		});
 		if (ifSelect) group.addToSelection();

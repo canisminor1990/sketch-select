@@ -46,7 +46,6 @@ function selectSubElement(group, configLayer, selectOption, sketch) {
 	} else {
 		let ifSelect = true;
 		selectOption.forEach(fnName => {
-			sketch.alert(Select[fnName], fnName);
 			if (!Select[fnName](group, configLayer)) ifSelect = false;
 		});
 		if (ifSelect) group.addToSelection();
