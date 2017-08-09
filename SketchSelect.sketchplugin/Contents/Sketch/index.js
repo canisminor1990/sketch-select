@@ -82,7 +82,7 @@ exports['default'] = function (context) {
 		x: 0,
 		y: 0,
 		width: 340,
-		height: 680,
+		height: 640,
 		onlyShowCloseButton: true,
 		background: hexToNSColor('32d1ff'),
 		title: ' ',
