@@ -1,3 +1,36 @@
-body {
+html, body {
+	background: #fff;
+	overflow: hidden;
+}
+* {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+#app {
+	overflow: hidden;
 	padding: 16px;
+}
+label {
+	width: 140px;
+}
+h3 {
+	margin: 16px 0 8px;
+}
+.ant-btn-lg {
+	width: 100%;
+}
+.banner {
+	margin: -16px;
+	margin-bottom: 16px;
+	width: 340px;
+	height: 150px;
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	background-position: center;
+	background-color: #32d1ff;
+	background-image: url("https://camo.githubusercontent.com/ed583210564827d7388d355415b25c0e689cfc1c/68747470733a2f2f6f346a346c346e37682e716e73736c2e636f6d2f323031372d30382d30342d636f7665725f73656c6563742e706e67");
 }

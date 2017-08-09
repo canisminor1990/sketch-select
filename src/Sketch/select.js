@@ -1,5 +1,8 @@
+const all = {
+	All: (layer, configLayer) => {}
+};
+
 const layers = {
-	All            : (layer, configLayer) => {},
 	LayerName      : (layer, configLayer) => {},
 	Width          : (layer, configLayer) => {},
 	Height         : (layer, configLayer) => {},
@@ -18,7 +21,8 @@ const textLayers = {
 	FontColor : (layer, configLayer) => {}
 };
 
-const layerStates = {
+const layerTypes = {
+	All  : (layer, configLayer) => {},
 	TextLayers  : (layer, configLayer) => {},
 	HiddenLayers: (layer, configLayer) => {},
 	LockedLayers: (layer, configLayer) => {},
@@ -27,7 +31,8 @@ const layerStates = {
 };
 
 export default{
+	All        : all,
 	Layers     : layers,
 	TextLayers : textLayers,
-	LayerStates: layerStates
+	LayerTypes: layerTypes
 };
