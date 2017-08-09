@@ -363,7 +363,13 @@ function selectSubElement(group, configLayer, selectOption, sketch) {
 	} else {
 		var ifSelect = true;
 		selectOption.forEach(function (fnName) {
-			if (!Select[fnName](group, configLayer)) ifSelect = false;
+
+			try {
+				// sketch.alert(group.style.sketchObject.fills(),'1')
+				if (!Select[fnName](group, configLayer)) ifSelect = false;
+			} catch (e) {
+				ifSelect = false;
+			}
 		});
 		if (ifSelect) group.addToSelection();
 	}
@@ -386,21 +392,40 @@ var layers = {
 	}(),
 	Width: function () {
 		function Width(layer, configLayer) {
-			return true;
+			return layer.frame.width === configLayer.frame.width;
 		}
 
 		return Width;
 	}(),
 	Height: function () {
 		function Height(layer, configLayer) {
-			return true;
+			return layer.frame.height === configLayer.frame.height;
 		}
 
 		return Height;
 	}(),
 	Fill: function () {
 		function Fill(layer, configLayer) {
-			return true;
+			var configFills = firstVisible(configLayer.style.sketchObject, 'fills');
+			var layerFills = firstVisible(layer.style.sketchObject, 'fills');
+			try {
+				if (layerFills.fillType() === configFills.fillType()) {
+					switch (layerFills.fillType()) {
+						case 0:
+							if (layerFills.color().isEqual(configFills.color())) return true;
+							break;
+						case 1:
+							if (layerFills.gradient().gradientType() === configFills.gradient().gradientType() && JSON.stringify(layerFills.gradient().stops()) === JSON.stringify(configFills.gradient().stops())) return true;
+							break;
+						case 4:
+							if (layerFills.image().isEqual(configFills.image())) return true;
+							break;
+						case 5:
+							if (layerFills.noiseIntensity() === configFills.noiseIntensity()) return true;
+					}
+				}
+			} catch (e) {}
+			return false;
 		}
 
 		return Fill;
@@ -512,11 +537,24 @@ var layerTypes = {
 	}()
 };
 
-exports["default"] = {
+exports['default'] = {
 	Layers: layers,
 	TextLayers: textLayers,
 	LayerTypes: layerTypes
 };
+
+
+function firstVisible(layer, type) {
+	try {
+		for (var i = 0; i < layer[type]().count(); i++) {
+			var callback = layer[type]().objectAtIndex(i);
+			if (callback.isEnabled()) {
+				return callback;
+			}
+		}
+	} catch (e) {}
+	return false;
+}
 
 /***/ }),
 /* 6 */
