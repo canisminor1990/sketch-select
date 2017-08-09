@@ -27,11 +27,18 @@
 		"skpm": "^0.10.5"
 	},
 	"skpm": {
-		"manifest": "src/manifest.json",
+		"manifest": "src/sketch/manifest.json",
 		"main": "plugin.sketchplugin"
 	},
+	"resources": [
+		"src/Resources/index.js"
+	],
 	"dependencies": {
+		"antd": "^2.12.5",
 		"lodash": "^4.17.4",
-		"sketch-api": "https://github.com/BohemianCoding/SketchAPI.git"
+		"react": "^15.6.1",
+		"react-dom": "^15.6.1",
+		"sketch-api": "https://github.com/BohemianCoding/SketchAPI.git",
+		"sketch-module-web-view": "^0.1.4"
 	}
 }
