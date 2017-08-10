@@ -408,23 +408,18 @@ var layers = {
 		function Fill(layer, configLayer) {
 			var configFills = firstVisible(configLayer.style.sketchObject, 'fills');
 			var layerFills = firstVisible(layer.style.sketchObject, 'fills');
-			try {
-				if (layerFills.fillType() === configFills.fillType()) {
-					switch (layerFills.fillType()) {
-						case 0:
-							if (layerFills.color().isEqual(configFills.color())) return true;
-							break;
-						case 1:
-							if (layerFills.gradient().gradientType() === configFills.gradient().gradientType() && JSON.stringify(layerFills.gradient().stops()) === JSON.stringify(configFills.gradient().stops())) return true;
-							break;
-						case 4:
-							if (layerFills.image().isEqual(configFills.image())) return true;
-							break;
-						case 5:
-							if (layerFills.noiseIntensity() === configFills.noiseIntensity()) return true;
-					}
+			if (layerFills.fillType() === configFills.fillType()) {
+				switch (layerFills.fillType()) {
+					case 0:
+						return layerFills.color().isEqual(configFills.color());
+					case 1:
+						return layerFills.gradient().gradientType() === configFills.gradient().gradientType() && JSON.stringify(layerFills.gradient().stops()) === JSON.stringify(configFills.gradient().stops());
+					case 4:
+						return layerFills.image().isEqual(configFills.image());
+					case 5:
+						return layerFills.noiseIntensity() === configFills.noiseIntensity();
 				}
-			} catch (e) {}
+			}
 			return false;
 		}
 
@@ -432,28 +427,32 @@ var layers = {
 	}(),
 	BorderColor: function () {
 		function BorderColor(layer, configLayer) {
-			return true;
+			var configBorders = firstVisible(configLayer.style.sketchObject, 'borders');
+			var layerBorders = firstVisible(layer.style.sketchObject, 'borders');
+			return layerBorders.color().isEqual(configBorders.color());
 		}
 
 		return BorderColor;
 	}(),
 	BorderThickness: function () {
 		function BorderThickness(layer, configLayer) {
-			return true;
+			var configBorders = firstVisible(configLayer.style.sketchObject, 'borders');
+			var layerBorders = firstVisible(layer.style.sketchObject, 'borders');
+			return layerBorders.thickness() === configBorders.thickness();
 		}
 
 		return BorderThickness;
 	}(),
 	Opacity: function () {
 		function Opacity(layer, configLayer) {
-			return true;
+			return layer.style.sketchObject.contextSettings().opacity() === configLayer.style.sketchObject.contextSettings().opacity();
 		}
 
 		return Opacity;
 	}(),
 	BlendMode: function () {
 		function BlendMode(layer, configLayer) {
-			return true;
+			return layer.style.sketchObject.contextSettings().blendMode() === configLayer.style.sketchObject.contextSettings().blendMode();
 		}
 
 		return BlendMode;
@@ -464,28 +463,29 @@ var layers = {
 var textLayers = {
 	TextString: function () {
 		function TextString(layer, configLayer) {
-			return true;
+			return layer.text.replace(/^\s+|\s+$/g, "") === configLayer.text.replace(/^\s+|\s+$/g, "");
 		}
 
 		return TextString;
 	}(),
 	FontFamily: function () {
 		function FontFamily(layer, configLayer) {
-			return true;
+			return layer.sketchObject.fontPostscriptName() === configLayer.sketchObject.fontPostscriptName();
 		}
 
 		return FontFamily;
 	}(),
 	FontSize: function () {
 		function FontSize(layer, configLayer) {
-			return true;
+			return layer.sketchObject.fontSize() === configLayer.sketchObject.fontSize();
 		}
 
 		return FontSize;
 	}(),
 	FontColor: function () {
 		function FontColor(layer, configLayer) {
-			return true;
+			return layer.sketchObject.textColor() === configLayer.sketchObject.textColor();
+			;
 		}
 
 		return FontColor;
@@ -509,21 +509,21 @@ var layerTypes = {
 	}(),
 	HiddenLayers: function () {
 		function HiddenLayers(layer, configLayer) {
-			return true;
+			return !layer.sketchObject.isVisible();
 		}
 
 		return HiddenLayers;
 	}(),
 	LockedLayers: function () {
 		function LockedLayers(layer, configLayer) {
-			return true;
+			return layer.sketchObject.isLocked();
 		}
 
 		return LockedLayers;
 	}(),
 	SymbolLayers: function () {
 		function SymbolLayers(layer, configLayer) {
-			return true;
+			return layer.sketchObject.symbolMaster().name() ? true : false;
 		}
 
 		return SymbolLayers;

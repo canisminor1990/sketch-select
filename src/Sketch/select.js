@@ -9,57 +9,55 @@ const layers = {
 		return layer.frame.height === configLayer.frame.height
 	},
 	Fill           : (layer, configLayer) => {
-		let configFills = firstVisible(configLayer.style.sketchObject,'fills');
-		let layerFills  = firstVisible(layer.style.sketchObject,'fills');
-		try {
-			if (layerFills.fillType() === configFills.fillType()) {
-				switch (layerFills.fillType()) {
-					case 0:
-						if (layerFills.color().isEqual(configFills.color())) return true
-						break
-					case 1:
-						if (layerFills.gradient().gradientType() === configFills.gradient().gradientType() &&
-							JSON.stringify(layerFills.gradient().stops()) === JSON.stringify(configFills.gradient().stops())) return true
-						break
-					case 4:
-						if (layerFills.image().isEqual(configFills.image())) return true
-						break
-					case 5:
-						if (layerFills.noiseIntensity() === configFills.noiseIntensity())return true
-				}
+		let configFills = firstVisible(configLayer.style.sketchObject, 'fills');
+		let layerFills  = firstVisible(layer.style.sketchObject, 'fills');
+		if (layerFills.fillType() === configFills.fillType()) {
+			switch (layerFills.fillType()) {
+				case 0:
+					return layerFills.color().isEqual(configFills.color())
+				case 1:
+					return layerFills.gradient().gradientType() === configFills.gradient().gradientType() &&
+						JSON.stringify(layerFills.gradient().stops()) === JSON.stringify(configFills.gradient().stops())
+				case 4:
+					return layerFills.image().isEqual(configFills.image())
+				case 5:
+					return layerFills.noiseIntensity() === configFills.noiseIntensity()
 			}
-		} catch (e) {
-		
 		}
 		return false
 	},
 	BorderColor    : (layer, configLayer) => {
-		return true;
+		let configBorders = firstVisible(configLayer.style.sketchObject, 'borders');
+		let layerBorders  = firstVisible(layer.style.sketchObject, 'borders');
+		return layerBorders.color().isEqual(configBorders.color())
 	},
 	BorderThickness: (layer, configLayer) => {
-		return true;
+		let configBorders = firstVisible(configLayer.style.sketchObject, 'borders');
+		let layerBorders  = firstVisible(layer.style.sketchObject, 'borders');
+		return layerBorders.thickness() === configBorders.thickness()
 	},
 	Opacity        : (layer, configLayer) => {
-		return true;
+		return layer.style.sketchObject.contextSettings().opacity() === configLayer.style.sketchObject.contextSettings().opacity();
 	},
 	BlendMode      : (layer, configLayer) => {
-		return true;
+		return layer.style.sketchObject.contextSettings().blendMode() === configLayer.style.sketchObject.contextSettings().blendMode();
 	}
 	
 };
 
 const textLayers = {
 	TextString: (layer, configLayer) => {
-		return true;
+		return layer.text.replace(/^\s+|\s+$/g, "") === configLayer.text.replace(/^\s+|\s+$/g, "")
 	},
 	FontFamily: (layer, configLayer) => {
-		return true;
+		return layer.sketchObject.fontPostscriptName() === configLayer.sketchObject.fontPostscriptName();
 	},
 	FontSize  : (layer, configLayer) => {
-		return true;
+		return layer.sketchObject.fontSize() === configLayer.sketchObject.fontSize();
 	},
 	FontColor : (layer, configLayer) => {
-		return true;
+		return layer.sketchObject.textColor() === configLayer.sketchObject.textColor();
+		;
 	}
 };
 
@@ -71,13 +69,13 @@ const layerTypes = {
 		return layer.isText;
 	},
 	HiddenLayers: (layer, configLayer) => {
-		return true;
+		return !layer.sketchObject.isVisible();
 	},
 	LockedLayers: (layer, configLayer) => {
-		return true;
+		return layer.sketchObject.isLocked();
 	},
 	SymbolLayers: (layer, configLayer) => {
-		return true;
+		return (layer.sketchObject.symbolMaster().name()) ? true : false;
 	},
 	Exportable  : (layer, configLayer) => {
 		return true;
@@ -90,7 +88,7 @@ export default{
 	LayerTypes: layerTypes
 };
 
-function firstVisible(layer,type) {
+function firstVisible(layer, type) {
 	try {
 		for (let i = 0; i < layer[type]().count(); i++) {
 			let callback = layer[type]().objectAtIndex(i);
