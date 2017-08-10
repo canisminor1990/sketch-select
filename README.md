@@ -30,17 +30,17 @@ Make it much more convenient to select layers with similar attributes
 
 ### Select layers
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-dialog.png" width="380">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-dialog.png" width="344">
 
-Select a layer and press `Command`+`Shift`+`F` on keyboard to callout the plugin dialog.
+Select a layer and press <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> on keyboard to callout the plugin dialog.
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-shortkey.png" width="200">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-shortkey.png" width="344">
 
 ### Select layers in all artboards
 
 You can choose wether to select layers in all artboards or just in one artboard.
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-option.png" width="380">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-option.png" width="344">
 
 ## Contact
 
