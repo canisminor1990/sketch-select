@@ -1,5 +1,8 @@
 # Sketch Select
 
+[![GitHub release](https://img.shields.io/github/release/canisminor1990/sketch-select.svg?maxAge=2592000)](https://github.com/canisminor1990/sketch-select/releases) 
+[![GitHub release](https://img.shields.io/badge/Works%20with-Sketch%20Runner-blue.svg?colorB=308ADF)](http://bit.ly/SketchRunnerWebsite)
+
 <img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-banner.png" width="520">
 
 Make it much more convenient to select layers with similar attributes
