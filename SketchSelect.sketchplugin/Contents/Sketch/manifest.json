@@ -22,6 +22,6 @@
   "description": "Make it convenient to select layers with similar attributes.",
   "homepage": "https://github.com/canisminor1990/sketch-select",
   "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://api.sketchpacks.com/v1/plugins/cm.sketch.select/appcast",
+  "appcast": "https://raw.githubusercontent.com/canisminor1990/sketch-select/master/.appcast.xml",
   "author": "Canis Minor"
 }

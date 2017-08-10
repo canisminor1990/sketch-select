@@ -19,7 +19,7 @@
 		"url": "https://github.com/canisminor1990/sketch-select/issues"
 	},
 	"homepage": "https://github.com/canisminor1990/sketch-select",
-	"appcast": "https://api.sketchpacks.com/v1/plugins/cm.sketch.select/appcast",
+	"appcast": "https://raw.githubusercontent.com/canisminor1990/sketch-select/master/.appcast.xml",
 	"engines": {
 		"sketch": ">=3.0"
 	},
