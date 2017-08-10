@@ -1,30 +1,10 @@
 # Sketch Select
-![](https://badges.sketchpacks.com/plugins/cm.sketch.select/version.svg) [中文说明](README_zh.md)
 
-<img src="https://o4j4l4n7h.qnssl.com/2017-08-04-cover_select.png" width="500">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-banner.png" width="520">
 
 Make it much more convenient to select layers with similar attributes
 
-### Same styles
-
-- Fill
-- Border
-- BorderThickness
-- Opacity
-- BlendMode
-- FontStyle
-- FontFamily
-
-### Same string
-
-- TextString
-- LayerName
-
-### Same state
-
-- TextLayers
-- HiddenLayers
-- LockedLayers
+[中文说明](README_zh.md)
 
 ## Installing Plugins
 
@@ -35,7 +15,7 @@ Make it much more convenient to select layers with similar attributes
 
 ### Install with Sketchpacks
 
-<a href="https://sketchpacks.com/canisminor1990/sketch-select/install"><img src="https://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png" alt="Install sketch-select with Sketchpacks" width="160"></a>
+<a href="https://sketchpacks.com/canisminor1990/sketch-select/install"><img src="https://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png" width="160"></a>
 
 ### Install with Runner
 
@@ -44,21 +24,23 @@ Make it much more convenient to select layers with similar attributes
 3. Type `SketchSelect`;
 4. Select `Sketch Select` item and press `Return`.
 
-<a href="http://bit.ly/SketchRunnerWebsite"><img src="http://bit.ly/RunnerBadgeBlue" alt="Works with Sketch Runner" width="160"></a>
+<a href="http://sketchrunner.com/"><img src="http://bit.ly/RunnerBadgeBlue" width="160"></a>
 
-## Preview
+## Usage
 
 ### Select layers
 
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-dialog.png" width="344">
+
 Select a layer and press `Command`+`Shift`+`F` on keyboard to callout the plugin dialog.
 
-![](http://i.imgur.com/Hly5g1r.png)
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-shortkey.png" width="344">
 
 ### Select layers in all artboards
 
 You can choose wether to select layers in all artboards or just in one artboard.
 
-![](http://i.imgur.com/xkma6Lb.png)
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-option.png" width="344">
 
 ## Contact
 
