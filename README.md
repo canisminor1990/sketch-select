@@ -4,7 +4,7 @@
 
 Make it much more convenient to select layers with similar attributes
 
-[中文说明](README_zh.md)
+- [中文说明](README_zh.md)
 
 ## Installing Plugins
 
@@ -19,7 +19,7 @@ Make it much more convenient to select layers with similar attributes
 
 ### Install with Runner
 
-1. Press `⌘` + `'` open Runner window;
+1. Press <kbd>⌘</kbd> + <kbd>'</kbd> open Runner window;
 2. Switch to `install` tab;
 3. Type `SketchSelect`;
 4. Select `Sketch Select` item and press `Return`.
@@ -41,6 +41,14 @@ Select a layer and press <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> on
 You can choose wether to select layers in all artboards or just in one artboard.
 
 <img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-option.png" width="344">
+
+### Run with Runner
+
+1. Press <kbd>⌘</kbd> + <kbd>'</kbd> open Runner window;
+2. Type `Select`;
+
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-run.png" width="344">
+
 
 ## Contact
 
