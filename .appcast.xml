@@ -2,7 +2,7 @@
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
 	<channel>
 		<item>
-			<enclosure url="https://github.com/canisminor1990/sketch-select/releases/download/2.0.0/SketchSelect.sketchplugin.zip" sparkle:version="2.0.0"/>
+			<enclosure url="https://github.com/canisminor1990/sketch-select/releases/download/2.0.1/SketchSelect.sketchplugin.zip" sparkle:version="2.0.1"/>
 		</item>
 	</channel>
 </rss>
