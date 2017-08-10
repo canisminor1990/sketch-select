@@ -5,7 +5,7 @@
 	"main": "SketchSelect.sketchplugin",
 	"scripts": {
 		"test": "roadhog server",
-		"build": "skpm build && roadhog build",
+		"build": "roadhog build && skpm build",
 		"watch": "skpm build --watch",
 		"publish": "skpm publish"
 	},
@@ -44,6 +44,7 @@
 		"lodash": "^4.17.4",
 		"react": "^15.6.1",
 		"react-dom": "^15.6.1",
-		"sketch-module-web-view": "^0.1.4"
+		"sketch-module-web-view": "^0.1.4",
+		"skpm": "^0.10.5"
 	}
 }

@@ -1,5 +1,6 @@
 {
 	"entry": "./src/Resources/index.js",
+	"public": "./src/public",
 	"disableCSSModules": true,
 	"outputPath": "./SketchSelect.sketchplugin/Contents/Resources",
 	"extraBabelPlugins": [

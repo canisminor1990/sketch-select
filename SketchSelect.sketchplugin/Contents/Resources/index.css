@@ -4647,7 +4647,7 @@ body,
   background-size: auto 90%;
   background-position: top center;
   background-color: #32d1ff;
-  background-image: url(/static/SketchSelect-Cover.2a966a62.png);
+  background-image: url("https://raw.githubusercontent.com/canisminor1990/sketch-select/master/SketchSelect-Cover.png");
 }
 /*reset*/
 .ant-checkbox-group > label,

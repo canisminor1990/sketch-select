@@ -364,7 +364,6 @@ function selectSubElement(group, configLayer, selectOption, sketch) {
 		var ifSelect = true;
 		selectOption.forEach(function (fnName) {
 			try {
-				sketch.alert(group.sketchObject['class'](), Select[fnName](group.sketchObject, configLayer.sketchObject).toString());
 				if (!Select[fnName](group.sketchObject, configLayer.sketchObject)) ifSelect = false;
 			} catch (e) {
 				ifSelect = false;
