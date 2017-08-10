@@ -8,3 +8,4 @@ npm-debug.log
 
 # mac
 .DS_Store
+yarn.lock

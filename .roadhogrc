@@ -1,0 +1,23 @@
+{
+	"entry": "./src/Resources/index.js",
+	"disableCSSModules": true,
+	"outputPath": "./SketchSelect.sketchplugin/Contents/Resources",
+	"extraBabelPlugins": [
+		"transform-runtime",
+		"lodash",
+		["import", { "libraryName": "antd", "style": true }]
+	],
+	"extraPostCSSPlugins": [],
+	"sass": false,
+	"hash": false,
+	"env": {
+		"development": {
+			"extraBabelPlugins": [
+				"dva-hmr"
+			]
+		}
+	},
+	"theme": {
+		"@primary-color": "#32d1ff"
+	}
+}
