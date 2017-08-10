@@ -5,14 +5,15 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "🖱 Sketch Select",
+      "name": "🖱 Select",
       "script": "index.js",
       "identifier": "sketch-select",
+      "shortcut": "command shift f",
       "icon": "assets/icon.png"
     }
   ],
   "menu": {
-    "title": "Sketch Select",
+    "title": "Select",
     "isRoot": true,
     "items": [
       "sketch-select"
