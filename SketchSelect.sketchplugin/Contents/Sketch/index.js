@@ -77,7 +77,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports['default'] = function (context) {
-	var webUI = new _sketchModuleWebView2['default'](context, 'index.html', {
+	var webUI = new _sketchModuleWebView2['default'](context, 'panel/index.html', {
 		identifier: 'sketch-select.dialog',
 		x: 0,
 		y: 0,

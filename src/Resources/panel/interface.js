@@ -1,7 +1,7 @@
 import React from 'react';
 import pluginCall from 'sketch-module-web-view/client';
 import { Button, Checkbox, Radio, Switch } from 'antd';
-import Select from '../Sketch/select';
+import Select from '../../Sketch/select';
 import './index.less';
 const CheckboxGroup = Checkbox.Group;
 const RadioGroup    = Radio.Group;
@@ -60,7 +60,7 @@ export default class extends React.Component {
 	render() {
 		return (
 			<div>
-				<div className="ui-banner"/>
+				<div className="ui-banner" style={{backgroundImage: `url(../assets/banner.png)`}}/>
 				<div className="ui-body">
 					<div className="ui-title">Layers</div>
 					<CheckboxGroup

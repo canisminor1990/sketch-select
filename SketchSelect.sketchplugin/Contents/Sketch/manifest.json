@@ -1,14 +1,14 @@
 {
   "name": "Sketch Select",
-  "icon": "https://o4j4l4n7h.qnssl.com/2017-08-04-SketchSelect-Icon.png",
   "identifier": "cm.sketch.select",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "Sketch Select",
+      "name": "🖱 Sketch Select",
       "script": "index.js",
-      "identifier": "sketch-select"
+      "identifier": "sketch-select",
+      "icon": "assets/icon.png"
     }
   ],
   "menu": {

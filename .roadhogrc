@@ -1,8 +1,8 @@
 {
-	"entry": "./src/Resources/index.js",
+	"entry": "./src/Resources/panel/index.js",
 	"public": "./src/public",
 	"disableCSSModules": true,
-	"outputPath": "./SketchSelect.sketchplugin/Contents/Resources",
+	"outputPath": "./SketchSelect.sketchplugin/Contents/Resources/panel",
 	"extraBabelPlugins": [
 		"transform-runtime",
 		"lodash",

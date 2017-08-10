@@ -1,7 +1,7 @@
 import WebUI from 'sketch-module-web-view';
 import handleSelection from './handleSelection';
 export default function (context) {
-	const webUI = new WebUI(context, 'index.html', {
+	const webUI = new WebUI(context, 'panel/index.html', {
 		identifier         : 'sketch-select.dialog',
 		x                  : 0,
 		y                  : 0,
