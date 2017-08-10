@@ -82,7 +82,7 @@ exports['default'] = function (context) {
 		x: 0,
 		y: 0,
 		width: 340,
-		height: 640,
+		height: 624,
 		onlyShowCloseButton: true,
 		background: hexToNSColor('32d1ff'),
 		title: ' ',
@@ -95,6 +95,13 @@ exports['default'] = function (context) {
 				}
 
 				return onClick;
+			}(),
+			openWeb: function () {
+				function openWeb(url) {
+					NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(url));
+				}
+
+				return openWeb;
 			}()
 		}
 	});
@@ -342,9 +349,10 @@ exports['default'] = function (callback, context) {
 		if (count > 0) return;
 		selection.clear();
 		var parentArtboard = selectAllAtrboards ? selectArtboard(layer, 'isPage') : selectArtboard(layer, 'isArtboard');
-		selectSubElement(parentArtboard, layer, selectOption, sketch);
+		selectSubElement(parentArtboard, layer, selectOption);
 		count++;
 	});
+	context.document.showMessage('🖱 Select Layers!');
 };
 
 function selectArtboard(layer, type) {
@@ -355,10 +363,10 @@ function selectArtboard(layer, type) {
 	return artboard;
 }
 
-function selectSubElement(group, configLayer, selectOption, sketch) {
+function selectSubElement(group, configLayer, selectOption) {
 	if (group.isGroup || group.isArtboard) {
 		group.iterate(function (layer) {
-			selectSubElement(layer, configLayer, selectOption, sketch);
+			selectSubElement(layer, configLayer, selectOption);
 		});
 	} else {
 		var ifSelect = true;
@@ -371,7 +379,7 @@ function selectSubElement(group, configLayer, selectOption, sketch) {
 		});
 		if (ifSelect) {
 			group.sketchObject.select_byExpandingSelection(true, true);
-		};
+		}
 	}
 }
 

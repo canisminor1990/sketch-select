@@ -1,6 +1,6 @@
 import React from 'react';
 import pluginCall from 'sketch-module-web-view/client';
-import { Button, Checkbox, Radio, Switch } from 'antd';
+import { Button, Checkbox, Radio, Switch, Icon } from 'antd';
 import Select from '../../Sketch/select';
 import './index.less';
 const CheckboxGroup = Checkbox.Group;
@@ -25,6 +25,7 @@ export default class extends React.Component {
 		this.onChangeLayerTypes         = this.onChangeLayerTypes.bind(this);
 		this.onChangeSelectAllAtrboards = this.onChangeSelectAllAtrboards.bind(this);
 		this.onClick                    = this.onClick.bind(this);
+		this.openWeb                    = this.openWeb.bind(this);
 	}
 
 	onChangeLayers(e) {
@@ -48,7 +49,6 @@ export default class extends React.Component {
 	}
 
 	onClick() {
-
 		let callback = {
 			SelectAllAtrboards: this.state.SelectAllAtrboards,
 			SelectOption      : [].concat(this.state.LayerType, this.state.Layers, this.state.TextLayers)
@@ -56,6 +56,12 @@ export default class extends React.Component {
 		pluginCall('onClick', JSON.stringify(callback));
 		console.log('onClick = ', callback);
 	};
+
+	openWeb() {
+		let web = 'https://github.com/canisminor1990/sketch-select'
+		pluginCall('openWeb', web);
+		console.log('openWeb = ', web);
+	}
 
 	render() {
 		return (
@@ -90,6 +96,12 @@ export default class extends React.Component {
 					<Button type="primary" size="large" onClick={this.onClick}>
 						Select
 					</Button>
+					<div
+						className="ui-footer"
+						onClick={this.openWeb}
+					>
+						<Icon type="github"/><span>canisminor1990</span>
+					</div>
 				</div>
 			</div>
 		);

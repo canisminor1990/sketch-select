@@ -6,15 +6,18 @@ export default function (context) {
 		x                  : 0,
 		y                  : 0,
 		width              : 340,
-		height             : 640,
+		height             : 624,
 		onlyShowCloseButton: true,
 		background         : hexToNSColor('32d1ff'),
 		title              : ' ',
 		hideTitleBar       : false,
 		shouldKeepAround   : true,
 		handlers           : {
-			onClick: (callback) => {
+			onClick   : (callback) => {
 				handleSelection(JSON.parse(callback), context);
+			},
+			openWeb: (url) => {
+				NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(url));
 			}
 		}
 	});

@@ -1,5 +1,5 @@
 import preSelect from './select';
-import {assign} from 'lodash';
+import { assign } from 'lodash';
 
 const Select = assign(
 	preSelect.Layers,
@@ -16,7 +16,7 @@ export default (callback, context) => {
 	let selectAllAtrboards = callback.SelectAllAtrboards;
 	let selectOption       = callback.SelectOption;
 
-	let count = 0;
+	let count      = 0;
 
 	selection.iterate(layer => {
 		if (count > 0) return;
@@ -24,10 +24,10 @@ export default (callback, context) => {
 		let parentArtboard = (selectAllAtrboards)
 			? selectArtboard(layer, 'isPage')
 			: selectArtboard(layer, 'isArtboard');
-		selectSubElement(parentArtboard, layer, selectOption, sketch);
+		selectSubElement(parentArtboard, layer, selectOption)
 		count++;
 	});
-
+	context.document.showMessage('🖱 Select Layers!');
 }
 
 function selectArtboard(layer, type) {
@@ -38,10 +38,10 @@ function selectArtboard(layer, type) {
 	return artboard;
 }
 
-function selectSubElement(group, configLayer, selectOption, sketch) {
+function selectSubElement(group, configLayer, selectOption) {
 	if (group.isGroup || group.isArtboard) {
 		group.iterate(layer => {
-			selectSubElement(layer, configLayer, selectOption, sketch);
+			selectSubElement(layer, configLayer, selectOption);
 		});
 	} else {
 		let ifSelect = true;
@@ -49,11 +49,11 @@ function selectSubElement(group, configLayer, selectOption, sketch) {
 			try {
 				if (!Select[fnName](group.sketchObject, configLayer.sketchObject)) ifSelect = false;
 			} catch (e) {
-				ifSelect = false
+				ifSelect = false;
 			}
 		});
 		if (ifSelect) {
-			group.sketchObject.select_byExpandingSelection(true, true)
-		};
+			group.sketchObject.select_byExpandingSelection(true, true);
+		}
 	}
 }
