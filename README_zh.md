@@ -2,7 +2,7 @@
 [![GitHub release](https://img.shields.io/github/release/canisminor1990/sketch-select.svg?maxAge=2592000)](https://github.com/canisminor1990/sketch-select/releases) 
 [![GitHub release](https://img.shields.io/badge/Works%20with-Sketch%20Runner-blue.svg?colorB=308ADF)](http://bit.ly/SketchRunnerWebsite)
 
-<img src="https://o4j4l4n7h.qnssl.com/2017-08-04-cover_select.png" width="500">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/Img/rm-banner.png" width="520">
 
 一键选择相同属性的图层
 
