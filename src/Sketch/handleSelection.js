@@ -8,16 +8,16 @@ const Select = assign(
 );
 
 export default (callback, context) => {
-	
+
 	let sketch    = context.api();
 	let document  = sketch.selectedDocument;
 	let selection = document.selectedLayers;
-	
+
 	let selectAllAtrboards = callback.SelectAllAtrboards;
 	let selectOption       = callback.SelectOption;
-	
+
 	let count = 0;
-	
+
 	selection.iterate(layer => {
 		if (count > 0) return;
 		selection.clear();
@@ -27,7 +27,7 @@ export default (callback, context) => {
 		selectSubElement(parentArtboard, layer, selectOption, sketch);
 		count++;
 	});
-	
+
 }
 
 function selectArtboard(layer, type) {
@@ -46,15 +46,15 @@ function selectSubElement(group, configLayer, selectOption, sketch) {
 	} else {
 		let ifSelect = true;
 		selectOption.forEach(fnName => {
-			
-			
 			try {
-				// sketch.alert(group.style.sketchObject.fills(),'1')
-				if (!Select[fnName](group, configLayer)) ifSelect = false;
+				 sketch.alert(group.sketchObject.class(),Select[fnName](group.sketchObject, configLayer.sketchObject).toString())
+				if (!Select[fnName](group.sketchObject, configLayer.sketchObject)) ifSelect = false;
 			} catch (e) {
 				ifSelect = false
 			}
 		});
-		if (ifSelect) group.addToSelection();
+		if (ifSelect) {
+			group.sketchObject.select_byExpandingSelection(true, true)
+		};
 	}
 }

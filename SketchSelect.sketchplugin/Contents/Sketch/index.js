@@ -363,15 +363,16 @@ function selectSubElement(group, configLayer, selectOption, sketch) {
 	} else {
 		var ifSelect = true;
 		selectOption.forEach(function (fnName) {
-
 			try {
-				// sketch.alert(group.style.sketchObject.fills(),'1')
-				if (!Select[fnName](group, configLayer)) ifSelect = false;
+				sketch.alert(group.sketchObject['class'](), Select[fnName](group.sketchObject, configLayer.sketchObject).toString());
+				if (!Select[fnName](group.sketchObject, configLayer.sketchObject)) ifSelect = false;
 			} catch (e) {
 				ifSelect = false;
 			}
 		});
-		if (ifSelect) group.addToSelection();
+		if (ifSelect) {
+			group.sketchObject.select_byExpandingSelection(true, true);
+		};
 	}
 }
 
@@ -385,29 +386,29 @@ Object.defineProperty(exports, "__esModule", {
 var layers = {
 	LayerName: function () {
 		function LayerName(layer, configLayer) {
-			return layer.name === configLayer.name;
+			return layer.name() === configLayer.name();
 		}
 
 		return LayerName;
 	}(),
 	Width: function () {
 		function Width(layer, configLayer) {
-			return layer.frame.width === configLayer.frame.width;
+			return layer.frame().width() === configLayer.frame().width();
 		}
 
 		return Width;
 	}(),
 	Height: function () {
 		function Height(layer, configLayer) {
-			return layer.frame.height === configLayer.frame.height;
+			return layer.frame().height() === configLayer.frame().height();
 		}
 
 		return Height;
 	}(),
 	Fill: function () {
 		function Fill(layer, configLayer) {
-			var configFills = firstVisible(configLayer.style.sketchObject, 'fills');
-			var layerFills = firstVisible(layer.style.sketchObject, 'fills');
+			var configFills = firstVisible(configLayer.style(), 'fills');
+			var layerFills = firstVisible(layer.style(), 'fills');
 			if (layerFills.fillType() === configFills.fillType()) {
 				switch (layerFills.fillType()) {
 					case 0:
@@ -427,8 +428,8 @@ var layers = {
 	}(),
 	BorderColor: function () {
 		function BorderColor(layer, configLayer) {
-			var configBorders = firstVisible(configLayer.style.sketchObject, 'borders');
-			var layerBorders = firstVisible(layer.style.sketchObject, 'borders');
+			var configBorders = firstVisible(configLayer.style(), 'borders');
+			var layerBorders = firstVisible(layer.style(), 'borders');
 			return layerBorders.color().isEqual(configBorders.color());
 		}
 
@@ -436,8 +437,8 @@ var layers = {
 	}(),
 	BorderThickness: function () {
 		function BorderThickness(layer, configLayer) {
-			var configBorders = firstVisible(configLayer.style.sketchObject, 'borders');
-			var layerBorders = firstVisible(layer.style.sketchObject, 'borders');
+			var configBorders = firstVisible(configLayer.style(), 'borders');
+			var layerBorders = firstVisible(layer.style(), 'borders');
 			return layerBorders.thickness() === configBorders.thickness();
 		}
 
@@ -445,14 +446,14 @@ var layers = {
 	}(),
 	Opacity: function () {
 		function Opacity(layer, configLayer) {
-			return layer.style.sketchObject.contextSettings().opacity() === configLayer.style.sketchObject.contextSettings().opacity();
+			return layer.style().contextSettings().opacity() === configLayer.style().contextSettings().opacity();
 		}
 
 		return Opacity;
 	}(),
 	BlendMode: function () {
 		function BlendMode(layer, configLayer) {
-			return layer.style.sketchObject.contextSettings().blendMode() === configLayer.style.sketchObject.contextSettings().blendMode();
+			return layer.style().contextSettings().blendMode() === configLayer.style().contextSettings().blendMode();
 		}
 
 		return BlendMode;
@@ -463,29 +464,28 @@ var layers = {
 var textLayers = {
 	TextString: function () {
 		function TextString(layer, configLayer) {
-			return layer.text.replace(/^\s+|\s+$/g, "") === configLayer.text.replace(/^\s+|\s+$/g, "");
+			return layer.stringValue().replace(/^\s+|\s+$/g, "") === configLayer.stringValue().replace(/^\s+|\s+$/g, "");
 		}
 
 		return TextString;
 	}(),
 	FontFamily: function () {
 		function FontFamily(layer, configLayer) {
-			return layer.sketchObject.fontPostscriptName() === configLayer.sketchObject.fontPostscriptName();
+			return layer.fontPostscriptName() === configLayer.fontPostscriptName();
 		}
 
 		return FontFamily;
 	}(),
 	FontSize: function () {
 		function FontSize(layer, configLayer) {
-			return layer.sketchObject.fontSize() === configLayer.sketchObject.fontSize();
+			return layer.fontSize() === configLayer.fontSize();
 		}
 
 		return FontSize;
 	}(),
 	FontColor: function () {
 		function FontColor(layer, configLayer) {
-			return layer.sketchObject.textColor() === configLayer.sketchObject.textColor();
-			;
+			return layer.textColor().isEqual(configLayer.textColor());
 		}
 
 		return FontColor;
@@ -502,35 +502,35 @@ var layerTypes = {
 	}(),
 	TextLayers: function () {
 		function TextLayers(layer, configLayer) {
-			return layer.isText;
+			return layer['class']() === MSTextLayer;
 		}
 
 		return TextLayers;
 	}(),
 	HiddenLayers: function () {
 		function HiddenLayers(layer, configLayer) {
-			return !layer.sketchObject.isVisible();
+			return !layer.isVisible();
 		}
 
 		return HiddenLayers;
 	}(),
 	LockedLayers: function () {
 		function LockedLayers(layer, configLayer) {
-			return layer.sketchObject.isLocked();
+			return layer.isLocked();
 		}
 
 		return LockedLayers;
 	}(),
 	SymbolLayers: function () {
 		function SymbolLayers(layer, configLayer) {
-			return layer.sketchObject.symbolMaster().name() ? true : false;
+			return layer['class']() === MSSymbolInstance;
 		}
 
 		return SymbolLayers;
 	}(),
 	Exportable: function () {
 		function Exportable(layer, configLayer) {
-			return true;
+			return layer.exportOptions().exportFormats().count() > 0;
 		}
 
 		return Exportable;

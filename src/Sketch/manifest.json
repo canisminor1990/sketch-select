@@ -1,15 +1,15 @@
 {
 	"icon": "https://o4j4l4n7h.qnssl.com/2017-08-04-SketchSelect-Icon.png",
-	"identifier": "cm.sketch.selectdev",
+	"identifier": "cm.sketch.select",
 	"compatibleVersion": 3,
 	"bundleVersion": 1,
 	"commands": [{
-		"name": "Sketch Select Dev",
+		"name": "Sketch Select",
 		"script": "index.js",
-		"identifier": "sketch-select-dev"
+		"identifier": "sketch-select"
 	}],
 	"menu": {
-		"title": "Sketch Select Dev",
+		"title": "Sketch Select",
 		"isRoot": true,
 		"items": [
 			"sketch-select-dev"
