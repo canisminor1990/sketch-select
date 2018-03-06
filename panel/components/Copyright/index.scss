@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  color: #ccc;
+  margin-top: 12px;
+  font-size: 13px;
+  cursor: pointer;
+  > span {
+    margin-left: 8px;
+  }
+}

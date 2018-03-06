@@ -24,7 +24,11 @@ module.exports = {
   globals: {
     'window': true,
     'document': true,
-    'navigator': true
+    'navigator': true,
+    'NSWorkspace': true,
+	  'NSColor': true,
+	  'NSWorkspace': true,
+	  'NSURL': true,
   },
   env: {
     'es6': true,

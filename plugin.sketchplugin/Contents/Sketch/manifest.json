@@ -19,7 +19,7 @@
       "sketch-select"
     ]
   },
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Make it convenient to select layers with similar attributes.",
   "homepage": "https://github.com/canisminor1990/sketch-select",
   "disableCocoaScriptPreprocessor": true,

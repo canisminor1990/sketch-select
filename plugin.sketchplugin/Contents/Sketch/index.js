@@ -317,8 +317,8 @@ module.exports = console
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(11),
-    getRawTag = __webpack_require__(42),
-    objectToString = __webpack_require__(43);
+    getRawTag = __webpack_require__(45),
+    objectToString = __webpack_require__(46);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -533,9 +533,9 @@ module.exports = function toArray(object) {
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayEach = __webpack_require__(32),
-    baseEach = __webpack_require__(33),
-    castFunction = __webpack_require__(54),
+var arrayEach = __webpack_require__(35),
+    baseEach = __webpack_require__(36),
+    castFunction = __webpack_require__(57),
     isArray = __webpack_require__(13);
 
 /**
@@ -580,8 +580,8 @@ module.exports = forEach;
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeKeys = __webpack_require__(37),
-    baseKeys = __webpack_require__(50),
+var arrayLikeKeys = __webpack_require__(40),
+    baseKeys = __webpack_require__(53),
     isArrayLike = __webpack_require__(0);
 
 /**
@@ -640,7 +640,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 module.exports = freeGlobal;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(41)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ }),
 /* 13 */
@@ -910,7 +910,7 @@ module.exports = baseAssignValue;
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(56);
+var getNative = __webpack_require__(59);
 
 var defineProperty = (function() {
   try {
@@ -974,60 +974,55 @@ module.exports = eq;
 /* WEBPACK VAR INJECTION */(function(console) {
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _dom = __webpack_require__(29);
 
 var _dom2 = _interopRequireDefault(_dom);
 
-var _utils = __webpack_require__(30);
+var _sketchModuleWebView = __webpack_require__(30);
+
+var _sketchModuleWebView2 = _interopRequireDefault(_sketchModuleWebView);
+
+var _utils = __webpack_require__(33);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function () {
-  // const Document = sketch.getSelectedDocument()
-  var document = _dom2.default.getDocuments()[0];
-  var page = document.selectedPage;
-  var selection = document.selectedLayers;
-  var AllLayers = (0, _utils.mapLayers)(page, { Shape: true });
+var isDev = "development" === 'development';
+var Panel = isDev ? 'http://localhost:8000' : 'index.html';
 
-  console.log(AllLayers);
-  (0, _utils.selectLayers)(AllLayers.filter);
+exports.default = function (context) {
+	// const Document = sketch.getSelectedDocument()
+	var document = _dom2.default.getDocuments()[0];
+	var page = document.selectedPage;
+	var selection = document.selectedLayers;
+	var AllLayers = (0, _utils.mapLayers)(page, { Shape: true });
+
+	var webUI = new _sketchModuleWebView2.default(context, Panel, {
+		identifier: 'sketch-select.dialog',
+		x: 0,
+		y: 0,
+		width: 340,
+		height: 624,
+		onlyShowCloseButton: true,
+		background: (0, _utils.hex2NSColor)('32d1ff'),
+		title: ' ',
+		hideTitleBar: false,
+		shouldKeepAround: true,
+		handlers: {
+			onClick: function onClick(callback) {
+				//handleSelection(JSON.parse(callback), context);
+				console.log(1);
+			},
+			openWeb: function openWeb(url) {
+				return (0, _utils.openURL)(url);
+			}
+		}
+	});
+
+	//selectLayers(AllLayers.filter);
 };
-
-// import WebUI from 'sketch-module-web-view';
-// import handleSelection from './handleSelection';
-// export default function (context) {
-//	const webUI = new WebUI(context, 'panel/index.html', {
-//		identifier         : 'sketch-select.dialog',
-//		x                  : 0,
-//		y                  : 0,
-//		width              : 340,
-//		height             : 624,
-//		onlyShowCloseButton: true,
-//		background         : hexToNSColor('32d1ff'),
-//		title              : ' ',
-//		hideTitleBar       : false,
-//		shouldKeepAround   : true,
-//		handlers           : {
-//			onClick   : (callback) => {
-//				handleSelection(JSON.parse(callback), context);
-//			},
-//			openWeb: (url) => {
-//				NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(url));
-//			}
-//		}
-//	});
-// }
-//
-// function hexToNSColor(hex) {
-//	var r = parseInt(hex.substring(0, 2), 16) / 255,
-//	    g = parseInt(hex.substring(2, 4), 16) / 255,
-//	    b = parseInt(hex.substring(4, 6), 16) / 255,
-//	    a = 1;
-//	return NSColor.colorWithRed_green_blue_alpha(r, g, b, a);
-// }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
@@ -1302,6 +1297,215 @@ module.exports = require("sketch/dom");
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* globals NSUUID NSThread NSPanel NSMakeRect NSTexturedBackgroundWindowMask NSTitledWindowMask NSWindowTitleHidden NSClosableWindowMask NSColor NSWindowMiniaturizeButton NSWindowZoomButton NSFloatingWindowLevel WebView COScript */
+var MochaJSDelegate = __webpack_require__(31)
+var parseQuery = __webpack_require__(32)
+
+var coScript = COScript.currentCOScript()
+
+var LOCATION_CHANGED = 'webView:didChangeLocationWithinPageForFrame:'
+
+function WebUI (context, frameLocation, options) {
+  // ColorPicker main window
+  var identifier = options.identifier || NSUUID.UUID().UUIDString()
+  var threadDictionary = NSThread.mainThread().threadDictionary()
+  var backgroundColor = options.background || NSColor.whiteColor()
+  var panel = threadDictionary[identifier] ? threadDictionary[identifier] : NSPanel.alloc().init()
+
+  // Window size
+  panel.setFrame_display(NSMakeRect(
+    options.x || 0,
+    options.y || 0,
+    options.width || 240,
+    options.height || 180
+  ), true)
+
+  // Titlebar
+  panel.setTitle(options.title || context.plugin.name())
+  if (options.hideTitleBar) {
+    panel.setTitlebarAppearsTransparent(true)
+    panel.setTitleVisibility(NSWindowTitleHidden)
+  }
+
+  // Hide minize and zoom buttons
+  if (options.onlyShowCloseButton) {
+    panel.standardWindowButton(NSWindowMiniaturizeButton).setHidden(true)
+    panel.standardWindowButton(NSWindowZoomButton).setHidden(true)
+  }
+
+  // Close window callback
+  if (options.onPanelClose) {
+    var closeButton = panel.standardWindowButton(NSWindowCloseButton)
+    closeButton.setCOSJSTargetFunction(function(sender) {
+      options.onPanelClose()
+      COScript.currentCOScript().setShouldKeepAround(false)
+      threadDictionary.removeObjectForKey(options.identifier)
+      panel.close()
+    })
+    closeButton.setAction("callAction:")
+  }
+
+  panel.setStyleMask(options.styleMask || (NSTexturedBackgroundWindowMask | NSTitledWindowMask | NSClosableWindowMask))
+  panel.setBackgroundColor(backgroundColor)
+  panel.becomeKeyWindow()
+  panel.setLevel(NSFloatingWindowLevel)
+
+  threadDictionary[identifier] = panel
+
+  if (options.shouldKeepAround !== false) { // Long-running script
+    coScript.setShouldKeepAround(true)
+  }
+
+  // Add Web View to window
+  var webView = WebView.alloc().initWithFrame(NSMakeRect(
+    0,
+    options.hideTitleBar ? -24 : 0,
+    options.width || 240,
+    (options.height || 180) - (options.hideTitleBar ? 0 : 24)
+  ))
+
+  if (options.frameLoadDelegate || options.handlers) {
+    var handlers = options.frameLoadDelegate || {}
+    if (options.handlers) {
+      var lastQueryId
+      handlers[LOCATION_CHANGED] = function (webview, frame) {
+        var query = webview.windowScriptObject().evaluateWebScript('window.location.hash')
+        query = parseQuery(query)
+        if (query.pluginAction && query.actionId && query.actionId !== lastQueryId && query.pluginAction in options.handlers) {
+          lastQueryId = query.actionId
+          try {
+            query.pluginArgs = JSON.parse(query.pluginArgs)
+          } catch (err) {}
+          options.handlers[query.pluginAction].apply(context, query.pluginArgs)
+        }
+      }
+    }
+    var frameLoadDelegate = new MochaJSDelegate(handlers)
+    webView.setFrameLoadDelegate_(frameLoadDelegate.getClassInstance())
+  }
+  if (options.uiDelegate) {
+    var uiDelegate = new MochaJSDelegate(options.uiDelegate)
+    webView.setUIDelegate_(uiDelegate.getClassInstance())
+  }
+
+  webView.setOpaque(true)
+  webView.setBackgroundColor(backgroundColor)
+
+  // When frameLocation is a file, prefix it with the Sketch Resources path
+  if ((/^(?!http|localhost|www|file).*\.html?$/).test(frameLocation)) {
+    frameLocation = context.plugin.urlForResourceNamed(frameLocation).path()
+  }
+  webView.setMainFrameURL_(frameLocation)
+
+  panel.contentView().addSubview(webView)
+  panel.center()
+  panel.makeKeyAndOrderFront(null)
+
+  return {
+    panel: panel,
+    eval: webView.stringByEvaluatingJavaScriptFromString,
+    webView: webView
+  }
+}
+
+WebUI.clean = function () {
+  coScript.setShouldKeepAround(false)
+}
+
+module.exports = WebUI
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+/* globals NSUUID MOClassDescription NSObject NSSelectorFromString NSClassFromString */
+
+module.exports = function (selectorHandlerDict, superclass) {
+  var uniqueClassName = 'MochaJSDelegate_DynamicClass_' + NSUUID.UUID().UUIDString()
+
+  var delegateClassDesc = MOClassDescription.allocateDescriptionForClassWithName_superclass_(uniqueClassName, superclass || NSObject)
+
+  delegateClassDesc.registerClass()
+
+  // Storage Handlers
+  var handlers = {}
+
+  // Define interface
+  this.setHandlerForSelector = function (selectorString, func) {
+    var handlerHasBeenSet = (selectorString in handlers)
+    var selector = NSSelectorFromString(selectorString)
+
+    handlers[selectorString] = func
+
+    /*
+      For some reason, Mocha acts weird about arguments: https://github.com/logancollins/Mocha/issues/28
+      We have to basically create a dynamic handler with a likewise dynamic number of predefined arguments.
+    */
+    if (!handlerHasBeenSet) {
+      var args = []
+      var regex = /:/g
+      while (regex.exec(selectorString)) {
+        args.push('arg' + args.length)
+      }
+
+      var dynamicFunction = eval('(function (' + args.join(', ') + ') { return handlers[selectorString].apply(this, arguments); })')
+
+      delegateClassDesc.addInstanceMethodWithSelector_function_(selector, dynamicFunction)
+    }
+  }
+
+  this.removeHandlerForSelector = function (selectorString) {
+    delete handlers[selectorString]
+  }
+
+  this.getHandlerForSelector = function (selectorString) {
+    return handlers[selectorString]
+  }
+
+  this.getAllHandlers = function () {
+    return handlers
+  }
+
+  this.getClass = function () {
+    return NSClassFromString(uniqueClassName)
+  }
+
+  this.getClassInstance = function () {
+    return NSClassFromString(uniqueClassName).new()
+  }
+
+  // Convenience
+  if (typeof selectorHandlerDict === 'object') {
+    for (var selectorString in selectorHandlerDict) {
+      this.setHandlerForSelector(selectorString, selectorHandlerDict[selectorString])
+    }
+  }
+}
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = function (query) {
+  query = query.split('?')[1]
+  if (!query) { return }
+  query = query.split('&').reduce(function (prev, s) {
+    var res = s.split('=')
+    if (res.length === 2) {
+      prev[decodeURIComponent(res[0])] = decodeURIComponent(res[1])
+    }
+    return prev
+  }, {})
+  return query
+}
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -1309,7 +1513,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mapLayers = __webpack_require__(31);
+var _mapLayers = __webpack_require__(34);
 
 Object.defineProperty(exports, 'mapLayers', {
   enumerable: true,
@@ -1318,7 +1522,7 @@ Object.defineProperty(exports, 'mapLayers', {
   }
 });
 
-var _selectLayers = __webpack_require__(72);
+var _selectLayers = __webpack_require__(75);
 
 Object.defineProperty(exports, 'selectLayers', {
   enumerable: true,
@@ -1327,10 +1531,28 @@ Object.defineProperty(exports, 'selectLayers', {
   }
 });
 
+var _hex2NSColor = __webpack_require__(76);
+
+Object.defineProperty(exports, 'hex2NSColor', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_hex2NSColor).default;
+  }
+});
+
+var _openURL = __webpack_require__(77);
+
+Object.defineProperty(exports, 'openURL', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_openURL).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 31 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1344,7 +1566,7 @@ var _forEach2 = __webpack_require__(9);
 
 var _forEach3 = _interopRequireDefault(_forEach2);
 
-var _assign2 = __webpack_require__(55);
+var _assign2 = __webpack_require__(58);
 
 var _assign3 = _interopRequireDefault(_assign2);
 
@@ -1392,7 +1614,7 @@ exports.default = function (page) {
 };
 
 /***/ }),
-/* 32 */
+/* 35 */
 /***/ (function(module, exports) {
 
 /**
@@ -1420,11 +1642,11 @@ module.exports = arrayEach;
 
 
 /***/ }),
-/* 33 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseForOwn = __webpack_require__(34),
-    createBaseEach = __webpack_require__(53);
+var baseForOwn = __webpack_require__(37),
+    createBaseEach = __webpack_require__(56);
 
 /**
  * The base implementation of `_.forEach` without support for iteratee shorthands.
@@ -1440,10 +1662,10 @@ module.exports = baseEach;
 
 
 /***/ }),
-/* 34 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseFor = __webpack_require__(35),
+var baseFor = __webpack_require__(38),
     keys = __webpack_require__(10);
 
 /**
@@ -1462,10 +1684,10 @@ module.exports = baseForOwn;
 
 
 /***/ }),
-/* 35 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var createBaseFor = __webpack_require__(36);
+var createBaseFor = __webpack_require__(39);
 
 /**
  * The base implementation of `baseForOwn` which iterates over `object`
@@ -1484,7 +1706,7 @@ module.exports = baseFor;
 
 
 /***/ }),
-/* 36 */
+/* 39 */
 /***/ (function(module, exports) {
 
 /**
@@ -1515,15 +1737,15 @@ module.exports = createBaseFor;
 
 
 /***/ }),
-/* 37 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseTimes = __webpack_require__(38),
-    isArguments = __webpack_require__(39),
+var baseTimes = __webpack_require__(41),
+    isArguments = __webpack_require__(42),
     isArray = __webpack_require__(13),
-    isBuffer = __webpack_require__(44),
+    isBuffer = __webpack_require__(47),
     isIndex = __webpack_require__(15),
-    isTypedArray = __webpack_require__(46);
+    isTypedArray = __webpack_require__(49);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1570,7 +1792,7 @@ module.exports = arrayLikeKeys;
 
 
 /***/ }),
-/* 38 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /**
@@ -1596,10 +1818,10 @@ module.exports = baseTimes;
 
 
 /***/ }),
-/* 39 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(40),
+var baseIsArguments = __webpack_require__(43),
     isObjectLike = __webpack_require__(4);
 
 /** Used for built-in method references. */
@@ -1638,7 +1860,7 @@ module.exports = isArguments;
 
 
 /***/ }),
-/* 40 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(2),
@@ -1662,7 +1884,7 @@ module.exports = baseIsArguments;
 
 
 /***/ }),
-/* 41 */
+/* 44 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1689,7 +1911,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 42 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(11);
@@ -1741,7 +1963,7 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 43 */
+/* 46 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -1769,11 +1991,11 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 44 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(3),
-    stubFalse = __webpack_require__(45);
+    stubFalse = __webpack_require__(48);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -1814,7 +2036,7 @@ module.exports = isBuffer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ }),
-/* 45 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /**
@@ -1838,12 +2060,12 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsTypedArray = __webpack_require__(47),
-    baseUnary = __webpack_require__(48),
-    nodeUtil = __webpack_require__(49);
+var baseIsTypedArray = __webpack_require__(50),
+    baseUnary = __webpack_require__(51),
+    nodeUtil = __webpack_require__(52);
 
 /* Node.js helper references. */
 var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -1871,7 +2093,7 @@ module.exports = isTypedArray;
 
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(2),
@@ -1937,7 +2159,7 @@ module.exports = baseIsTypedArray;
 
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports) {
 
 /**
@@ -1957,7 +2179,7 @@ module.exports = baseUnary;
 
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(12);
@@ -1986,11 +2208,11 @@ module.exports = nodeUtil;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isPrototype = __webpack_require__(17),
-    nativeKeys = __webpack_require__(51);
+    nativeKeys = __webpack_require__(54);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -2022,10 +2244,10 @@ module.exports = baseKeys;
 
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(52);
+var overArg = __webpack_require__(55);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeKeys = overArg(Object.keys, Object);
@@ -2034,7 +2256,7 @@ module.exports = nativeKeys;
 
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports) {
 
 /**
@@ -2055,7 +2277,7 @@ module.exports = overArg;
 
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArrayLike = __webpack_require__(0);
@@ -2093,7 +2315,7 @@ module.exports = createBaseEach;
 
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var identity = __webpack_require__(6);
@@ -2113,12 +2335,12 @@ module.exports = castFunction;
 
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assignValue = __webpack_require__(19),
-    copyObject = __webpack_require__(62),
-    createAssigner = __webpack_require__(63),
+    copyObject = __webpack_require__(65),
+    createAssigner = __webpack_require__(66),
     isArrayLike = __webpack_require__(0),
     isPrototype = __webpack_require__(17),
     keys = __webpack_require__(10);
@@ -2177,11 +2399,11 @@ module.exports = assign;
 
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsNative = __webpack_require__(57),
-    getValue = __webpack_require__(61);
+var baseIsNative = __webpack_require__(60),
+    getValue = __webpack_require__(64);
 
 /**
  * Gets the native function at `key` of `object`.
@@ -2200,13 +2422,13 @@ module.exports = getNative;
 
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isFunction = __webpack_require__(18),
-    isMasked = __webpack_require__(58),
+    isMasked = __webpack_require__(61),
     isObject = __webpack_require__(5),
-    toSource = __webpack_require__(60);
+    toSource = __webpack_require__(63);
 
 /**
  * Used to match `RegExp`
@@ -2253,10 +2475,10 @@ module.exports = baseIsNative;
 
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var coreJsData = __webpack_require__(59);
+var coreJsData = __webpack_require__(62);
 
 /** Used to detect methods masquerading as native. */
 var maskSrcKey = (function() {
@@ -2279,7 +2501,7 @@ module.exports = isMasked;
 
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(3);
@@ -2291,7 +2513,7 @@ module.exports = coreJsData;
 
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -2323,7 +2545,7 @@ module.exports = toSource;
 
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, exports) {
 
 /**
@@ -2342,7 +2564,7 @@ module.exports = getValue;
 
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assignValue = __webpack_require__(19),
@@ -2388,11 +2610,11 @@ module.exports = copyObject;
 
 
 /***/ }),
-/* 63 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseRest = __webpack_require__(64),
-    isIterateeCall = __webpack_require__(71);
+var baseRest = __webpack_require__(67),
+    isIterateeCall = __webpack_require__(74);
 
 /**
  * Creates a function like `_.assign`.
@@ -2431,12 +2653,12 @@ module.exports = createAssigner;
 
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var identity = __webpack_require__(6),
-    overRest = __webpack_require__(65),
-    setToString = __webpack_require__(67);
+    overRest = __webpack_require__(68),
+    setToString = __webpack_require__(70);
 
 /**
  * The base implementation of `_.rest` which doesn't validate or coerce arguments.
@@ -2454,10 +2676,10 @@ module.exports = baseRest;
 
 
 /***/ }),
-/* 65 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var apply = __webpack_require__(66);
+var apply = __webpack_require__(69);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeMax = Math.max;
@@ -2496,7 +2718,7 @@ module.exports = overRest;
 
 
 /***/ }),
-/* 66 */
+/* 69 */
 /***/ (function(module, exports) {
 
 /**
@@ -2523,11 +2745,11 @@ module.exports = apply;
 
 
 /***/ }),
-/* 67 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseSetToString = __webpack_require__(68),
-    shortOut = __webpack_require__(70);
+var baseSetToString = __webpack_require__(71),
+    shortOut = __webpack_require__(73);
 
 /**
  * Sets the `toString` method of `func` to return `string`.
@@ -2543,10 +2765,10 @@ module.exports = setToString;
 
 
 /***/ }),
-/* 68 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var constant = __webpack_require__(69),
+var constant = __webpack_require__(72),
     defineProperty = __webpack_require__(21),
     identity = __webpack_require__(6);
 
@@ -2571,7 +2793,7 @@ module.exports = baseSetToString;
 
 
 /***/ }),
-/* 69 */
+/* 72 */
 /***/ (function(module, exports) {
 
 /**
@@ -2603,7 +2825,7 @@ module.exports = constant;
 
 
 /***/ }),
-/* 70 */
+/* 73 */
 /***/ (function(module, exports) {
 
 /** Used to detect hot functions by number of calls within a span of milliseconds. */
@@ -2646,7 +2868,7 @@ module.exports = shortOut;
 
 
 /***/ }),
-/* 71 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var eq = __webpack_require__(22),
@@ -2682,7 +2904,7 @@ module.exports = isIterateeCall;
 
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2708,6 +2930,40 @@ exports.default = function (layers) {
   }
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+exports.default = function (hex) {
+	var r = parseInt(hex.substring(0, 2), 16) / 255,
+	    g = parseInt(hex.substring(2, 4), 16) / 255,
+	    b = parseInt(hex.substring(4, 6), 16) / 255,
+	    a = 1;
+	return NSColor.colorWithRed_green_blue_alpha(r, g, b, a);
+};
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (url) {
+  return NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(url));
+};
 
 /***/ })
 /******/ ]);

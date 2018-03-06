@@ -1,0 +1,33 @@
+.ant-tabs-tab {
+  margin-right: 0.15rem !important;
+}
+.ant-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.ant-checkbox-group-item {
+  width: 45%;
+}
+.ant-collapse-header {
+  padding-left: 0 !important;
+  font-size: 0.95rem;
+  color: #222;
+  font-weight: 600;
+  &:after {
+    content: '#';
+    color: #e3e3e3;
+    margin-left: 0.5rem;
+  }
+  > i {
+    right: 0;
+    left: auto !important;
+    color: #999;
+  }
+}
+.ant-collapse-item {
+  border: none !important;
+}
+.ant-collapse-content {
+  border: none !important;
+  padding: 0;
+}

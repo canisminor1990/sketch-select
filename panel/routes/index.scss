@@ -1,0 +1,64 @@
+$c-primary: #32d1ff;
+@import 'scroll';
+:global {
+  @import 'reset';
+}
+.banner {
+  width: 100%;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: auto 90%;
+  background-position: top center;
+  background-color: $c-primary;
+  background-image: url('/banner.png');
+}
+.page {
+  width: 100vw;
+  height: calc(100vh - 340px);
+  overflow: hidden;
+}
+.container {
+  padding: 0 1rem 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+.globalSwitch {
+  display: flex;
+  align-items: center;
+  > span {
+    margin-right: 0.5rem;
+  }
+}
+.submitBtn {
+  width: 100%;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+.footbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 -4px 16px rgba(#000, 0.05);
+}
+.split {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+.selection {
+  display: block;
+  margin-left: 0 !important;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  > span:last-child {
+    flex: 1;
+  }
+}
