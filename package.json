@@ -43,7 +43,7 @@
 		"lint"
 	],
 	"lint-staged": {
-		"README.md": [
+		"*.md": [
 			"prettier --trailing-comma all --single-quote --write",
 			"git add"
 		],
