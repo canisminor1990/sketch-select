@@ -3,13 +3,13 @@
   "identifier": "cm.sketch.select",
   "compatibleVersion": 3,
   "bundleVersion": 1,
+  "icon": "icon.png",
   "commands": [
     {
       "name": "🖱 Select",
       "script": "index.js",
       "identifier": "sketch-select",
-      "shortcut": "command shift f",
-      "icon": "assets/icon.png"
+      "shortcut": "command shift f"
     }
   ],
   "menu": {
@@ -19,10 +19,11 @@
       "sketch-select"
     ]
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Make it convenient to select layers with similar attributes.",
   "homepage": "https://github.com/canisminor1990/sketch-select",
   "disableCocoaScriptPreprocessor": true,
   "appcast": "https://raw.githubusercontent.com/canisminor1990/sketch-select/master/.appcast.xml",
-  "author": "Canis Minor"
+  "author": "CanisMinor",
+  "authorEmail": "i@canisminor.cc"
 }

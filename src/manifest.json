@@ -3,12 +3,12 @@
 	"identifier": "cm.sketch.select",
 	"compatibleVersion": 3,
 	"bundleVersion": 1,
+	"icon": "icon.png",
 	"commands": [{
 		"name": "🖱 Select",
 		"script": "index.js",
 		"identifier": "sketch-select",
-		"shortcut": "command shift f",
-		"icon": "assets/icon.png"
+		"shortcut": "command shift f"
 	}],
 	"menu": {
 		"title": "Select",

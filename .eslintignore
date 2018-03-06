@@ -1,0 +1,4 @@
+**/node_modules/**
+**/plugin.sketchplugin/**
+**/dist/**
+**/test/**
