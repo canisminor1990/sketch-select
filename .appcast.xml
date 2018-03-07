@@ -5,7 +5,7 @@
       <enclosure url="https://github.com/canisminor1990/sketch-select/releases/download/v3.0.0/plugin.sketchplugin.zip" sparkle:version="3.0.0"/>
     </item>
     <item>
-      <enclosure url="https://github.com/canisminor1990/sketch-select/releases/download/2.0.1/SketchSelect.sketchplugin.zip" sparkle:version="2.0.1"/>
+      <enclosure url="https://github.com/canisminor1990/sketch-select/releases/download/v2.0.1/SketchSelect.sketchplugin.zip" sparkle:version="2.0.1"/>
     </item>
   </channel>
 </rss>
