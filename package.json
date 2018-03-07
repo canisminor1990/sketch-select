@@ -1,6 +1,6 @@
 {
 	"name": "sketch-select",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "Make it convenient to select layers with similar attributes.",
 	"repository": {
 		"type": "git",
