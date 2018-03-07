@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/badge/Works%20with-Sketch%20Runner-blue.svg?colorB=308ADF)](http://bit.ly/SketchRunnerWebsite)
 [![](https://img.shields.io/github/downloads/canisminor1990/sketch-select/total.svg)](https://github.com/canisminor1990/sketch-select/releases)
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-banner.png" width="520">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-banner.png" width="520">
 
 Make it much more convenient to select layers with similar attributes
 
@@ -34,24 +34,24 @@ Make it much more convenient to select layers with similar attributes
 
 ### Select layers
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-dialog.png" width="344">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-dialog.png" width="344">
 
 Select a layer and press <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> on keyboard to callout the plugin dialog.
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-shortkey.png" width="344">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-shortkey.png" width="344">
 
 ### Select layers in all artboards
 
 You can choose wether to select layers in all artboards or just in one artboard.
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-option.png" width="344">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-option.png" width="344">
 
 ### Run with Runner
 
 1.  Press <kbd>⌘</kbd> + <kbd>'</kbd> open Runner window;
 2.  Type `Select`;
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-run.png" width="344">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-run.png" width="344">
 
 ## Contact
 

@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/badge/Works%20with-Sketch%20Runner-blue.svg?colorB=308ADF)](http://bit.ly/SketchRunnerWebsite)
 [![](https://img.shields.io/github/downloads/canisminor1990/sketch-select/total.svg)](https://github.com/canisminor1990/sketch-select/releases)
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-banner.png" width="520">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-banner.png" width="520">
 
 一键选择相同属性的图层
 
@@ -32,24 +32,24 @@
 
 ### 在当前画板选择图层
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-dialog.png" width="344">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-dialog.png" width="344">
 
 选择一个图层并按下 <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> 将开打插件对话框
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-shortkey.png" width="344">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-shortkey.png" width="344">
 
 ### 全部画板选择图层
 
 勾选 `select layers in all artboards` 开启全局模式
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-option.png" width="344">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-option.png" width="344">
 
 ### Run with Runner
 
 1.  <kbd>⌘</kbd> + <kbd>'</kbd> 打开 Runner;
 2.  输入 `Select`;
 
-<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/src/img/rm-run.png" width="344">
+<img src="https://raw.githubusercontent.com/canisminor1990/sketch-select/master/img/rm-run.png" width="344">
 
 ## 反馈方式
 
