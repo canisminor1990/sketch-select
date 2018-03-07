@@ -23,7 +23,7 @@
 	"skpm": {
 		"name": "sketch-select",
 		"manifest": "src/manifest.json",
-		"main": "plugin.sketchplugin",
+		"main": "SketchSelect.sketchplugin",
 		"assets": [
 			"dist/**/*"
 		]

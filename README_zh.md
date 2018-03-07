@@ -13,7 +13,7 @@
 ### 直接下载
 
 1.  [下载 ZIP 包](https://github.com/canisminor1990/sketch-select/archive/master.zip) 并解压
-2.  打开 `plugin.sketchplugin` 即可安装
+2.  打开 `SketchSelect.sketchplugin` 即可安装
 
 ### 使用 Sketchpacks 安装
 

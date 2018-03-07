@@ -31,13 +31,15 @@ export default (page, opt = {}) => {
 
   mapLayers(page.layers);
 
-  const Props = {
-    Name: ['name', 'id'],
-    Rect: ['x', 'y', 'width', 'height'],
-    Prototyping: ['text', 'alignment', 'lineSpacing', 'fixedWidth'],
-    Style: ['fillColor', 'fillType', 'borderColor', 'borderThickness'],
-    Symbol: ['symbolId'],
-  };
+  /*
+	const Props = {
+	  Name: ['name', 'id'],
+	  Rect: ['x', 'y', 'width', 'height'],
+	  Prototyping: ['text', 'alignment', 'lineSpacing', 'fixedWidth'],
+	  Style: ['fillColor', 'fillType', 'borderColor', 'borderThickness'],
+	  Symbol: ['symbolId'],
+	};
+	*/
 
   _.forEach(All, layer => {
     let save = true;
@@ -63,7 +65,16 @@ export default (page, opt = {}) => {
 
     if (save && opt.config.Prototyping) {
       _.forEach(opt.config.Prototyping, (value, key) => {
-        if (layer[key] && layer[key] !== value) save = false;
+        if (key === 'text') {
+          if (opt.config.Prototyping.textReg) {
+            const reg = new RegExp(value);
+            if (!reg.test(layer.text)) save = false;
+          } else {
+            if (layer.text !== value) save = false;
+          }
+        } else {
+          if (layer[key] && layer[key] !== value) save = false;
+        }
       });
     }
 

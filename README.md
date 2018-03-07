@@ -15,7 +15,7 @@ Make it much more convenient to select layers with similar attributes
 ### Direct download
 
 1.  [Download the ZIP file](https://github.com/canisminor1990/sketch-select/archive/master.zip) and unzip
-2.  Open the `plugin.sketchplugin`
+2.  Open the `SketchSelect.sketchplugin`
 
 ### Install with Sketchpacks
 
