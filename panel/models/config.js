@@ -5,43 +5,50 @@ const Checked = type => ({
 const Switch = type => ({
   [`${type}Switch`]: false,
 });
+
+const defaultConfig = {
+  ...Switch('global'),
+  ...Checked('type'),
+  ...Checked('name'),
+  ...Checked('id'),
+  // rect
+  ...Checked('x'),
+  ...Checked('y'),
+  ...Checked('width'),
+  ...Checked('height'),
+  // text
+  ...Checked('text'),
+  ...Switch('textReg'),
+  ...Checked('alignment'),
+  ...Checked('lineSpacing'),
+  ...Checked('fixedWidth'),
+  // shape
+  ...Checked('fillColor'),
+  ...Checked('fillType'),
+  ...Checked('borderColor'),
+  ...Checked('borderThickness'),
+  // symbol
+  ...Checked('symbolId'),
+  // other
+  ...Switch('exportable'),
+  ...Switch('hide'),
+  ...Switch('lock'),
+};
 export default {
   namespace: 'config',
 
   state: {
-    ...Switch('global'),
-    ...Checked('type'),
-    ...Checked('name'),
-    ...Checked('x'),
-    ...Checked('y'),
-    ...Checked('width'),
-    ...Checked('height'),
-    // text
-    ...Checked('content'),
-    ...Switch('contentReg'),
-    ...Checked('typeface'),
-    ...Checked('weight'),
-    ...Checked('size'),
-    ...Checked('alignment'),
-    ...Checked('spacing'),
-    ...Checked('color'),
-    // shape
-    ...Checked('fills'),
-    ...Checked('borders'),
-    ...Checked('opacity'),
-    ...Checked('blending'),
-    ...Checked('shadows'),
-    ...Checked('innerShadows'),
-    ...Checked('gaussianBlur'),
-    // other
-    ...Checked('exportable'),
-    ...Checked('hidden'),
+    page: 'Any',
+    ...defaultConfig,
   },
 
   reducers: {
     updateSuccess(state, action) {
       const payload = action.payload;
       return { ...state, ...payload };
+    },
+    reset(state, action) {
+      return { ...state, ...defaultConfig };
     },
   },
 

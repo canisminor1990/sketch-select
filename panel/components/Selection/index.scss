@@ -1,0 +1,10 @@
+.selection {
+  display: block;
+  margin-left: 0 !important;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  > span:last-child {
+    flex: 1;
+  }
+}

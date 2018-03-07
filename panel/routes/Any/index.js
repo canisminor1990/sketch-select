@@ -1,4 +1,4 @@
-import Tab from '../tab';
+import Tab from '../Tab';
 import { connect } from 'dva';
 import { Collapse, Checkbox } from 'antd';
 import style from '../index.scss';
@@ -30,35 +30,19 @@ class Page extends Tab {
     );
   };
 
-  Name = () => <this.Selection title="Name" type="name" />;
-
-  Rectangle = () => {
-    return (
-      <div>
-        <this.Selection title="X" type="x" />
-        <this.Selection title="Y" type="y" />
-        <this.Selection title="Width" type="width" />
-        <this.Selection title="Height" type="height" />
-      </div>
-    );
-  };
-
   render() {
     return (
-      <div className={style.page}>
-        <Collapse defaultActiveKey={['1', '2', '3']} className={style.container}>
-          <Panel header="LayerTypes" key="1">
-            <this.LayerTypes />
-          </Panel>
-          <Panel header="Name" key="2">
-            <this.Name />
-          </Panel>
-          <Panel header="Rectangle" key="3">
-            <this.Rectangle />
-          </Panel>
-        </Collapse>
-        <this.FootBar />
-      </div>
+      <Collapse defaultActiveKey={['1', '2', '3']} className={style.container}>
+        <Panel header="LayerTypes" key="1">
+          <this.LayerTypes />
+        </Panel>
+        <Panel header="Name" key="2">
+          <this.Name />
+        </Panel>
+        <Panel header="Rectangle" key="3">
+          <this.Rectangle />
+        </Panel>
+      </Collapse>
     );
   }
 

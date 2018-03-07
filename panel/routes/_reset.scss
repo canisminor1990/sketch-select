@@ -1,5 +1,5 @@
 .ant-tabs-tab {
-  margin-right: 0.15rem !important;
+  margin: 0 0.5rem !important;
 }
 .ant-checkbox-group {
   display: flex;
@@ -29,5 +29,26 @@
 }
 .ant-collapse-content {
   border: none !important;
-  padding: 0;
+  padding: 0 !important;
+}
+.ant-checkbox-wrapper {
+  .ant-input {
+    border-radius: 2rem !important;
+    border-color: #eee;
+
+    width: 60% !important;
+  }
+  .ant-input-group-addon {
+    background: #fff;
+    border: none;
+  }
+
+  .ant-input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.ant-tabs-bar {
+  margin-bottom: 0;
 }

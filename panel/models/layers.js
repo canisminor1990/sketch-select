@@ -1,3 +1,9 @@
+const defaultConfig = {
+  checkedList: [],
+  indeterminate: false,
+  checkAll: false,
+};
+
 export default {
   namespace: 'layers',
 
@@ -13,12 +19,13 @@ export default {
       'SymbolMaster',
       'SymbolOverride',
     ],
-    checkedList: [],
-    indeterminate: true,
-    checkAll: false,
+    ...defaultConfig,
   },
 
   reducers: {
+    reset(state, action) {
+      return { ...state, ...defaultConfig };
+    },
     updateSuccess(state, action) {
       const payload = action.payload;
       return { ...state, ...payload };

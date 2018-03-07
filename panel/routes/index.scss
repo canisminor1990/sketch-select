@@ -10,33 +10,49 @@ $c-primary: #32d1ff;
   background-size: auto 90%;
   background-position: top center;
   background-color: $c-primary;
-  background-image: url('/banner.png');
+  padding: 1rem;
 }
-.page {
+
+.view .container {
   width: 100vw;
-  height: calc(100vh - 340px);
-  overflow: hidden;
-}
-.container {
-  padding: 0 1rem 1rem;
+  height: calc(100vh - 320px);
+  padding: 0.5rem 1rem 1rem;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 100%;
-  height: 100%;
-  border: none;
+  border: none !important;
   background: transparent;
 }
-.globalSwitch {
+.btnGroup {
   display: flex;
-  align-items: center;
-  > span {
-    margin-right: 0.5rem;
-  }
+  margin-top: 1rem;
+}
+.getBtn,
+.submitBtn {
+  flex: 1;
+
+  border-radius: 3rem;
+}
+.getBtn {
+  margin-right: 1rem;
 }
 .submitBtn {
-  width: 100%;
   font-weight: 600;
-  margin-top: 1rem;
+  border: none;
+  background: linear-gradient(
+    45deg,
+    $c-primary,
+    lighten($c-primary, 16%)
+  ) !important;
+  box-shadow: 0 4px 24px rgba($c-primary, 0.25);
+}
+.resetBtn {
+  border-radius: 2rem;
+  margin: 0 auto;
+  float: right;
+  font-size: 0.8rem;
+  border: none;
+  color: #fff !important;
+  background: rgba(#fff, 0.2) !important;
 }
 .footbar {
   position: fixed;
@@ -51,14 +67,4 @@ $c-primary: #32d1ff;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
   border-bottom: 1px solid #eee;
-}
-.selection {
-  display: block;
-  margin-left: 0 !important;
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  > span:last-child {
-    flex: 1;
-  }
 }

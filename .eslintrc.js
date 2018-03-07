@@ -29,6 +29,7 @@ module.exports = {
 	  'NSColor': true,
 	  'NSWorkspace': true,
 	  'NSURL': true,
+    'localStorage': true,
   },
   env: {
     'es6': true,

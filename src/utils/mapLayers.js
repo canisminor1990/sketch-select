@@ -13,11 +13,11 @@ export default (page, opt = {}) => {
       SymbolMaster: false,
       SymbolOverride: false,
     },
-    opt
+    opt.types
   );
   const All = [];
   const Layers = [];
-  const Filter = [];
+  let Filter = [];
   const mapLayers = layers => {
     _.forEach(layers, layer => {
       All.push(layer);
@@ -31,13 +31,68 @@ export default (page, opt = {}) => {
 
   mapLayers(page.layers);
 
+  const Props = {
+    Name: ['name', 'id'],
+    Rect: ['x', 'y', 'width', 'height'],
+    Prototyping: ['text', 'alignment', 'lineSpacing', 'fixedWidth'],
+    Style: ['fillColor', 'fillType', 'borderColor', 'borderThickness'],
+    Symbol: ['symbolId'],
+  };
+
   _.forEach(All, layer => {
-    if (configs[layer.type]) Filter.push(layer);
+    let save = true;
+    if (!configs[layer.type]) save = false;
+
+    if (save && opt.config.Name) {
+      _.forEach(opt.config.Name, (value, key) => {
+        if (layer[key] !== value) save = false;
+      });
+    }
+
+    if (save && opt.config.Rect) {
+      _.forEach(opt.config.Rect, (value, key) => {
+        if (layer.frame[key] !== value) save = false;
+      });
+    }
+
+    if (save && opt.config.Symbol) {
+      _.forEach(opt.config.Symbol, (value, key) => {
+        if (layer[key] !== value) save = false;
+      });
+    }
+
+    if (save && opt.config.Prototyping) {
+      _.forEach(opt.config.Prototyping, (value, key) => {
+        if (layer[key] && layer[key] !== value) save = false;
+      });
+    }
+
+    if (save && opt.config.Style) {
+      const Style = opt.config.Style;
+      const fill = layer.style.fills[0];
+      const border = layer.style.borders[0];
+      if (save && Style.fillColor) {
+        if (!fill) save = false;
+        if (save && fill.color !== Style.fillColor) save = false;
+      }
+      if (save && Style.fillType) {
+        if (!fill) save = false;
+        if (save && fill.fill !== Style.fillType) save = false;
+      }
+      if (save && Style.borderColor) {
+        if (!border) save = false;
+        if (save && border.color !== Style.borderColor) save = false;
+      }
+      if (save && Style.borderThickness) {
+        if (!border) save = false;
+        if (save && border.thickness !== Style.borderThickness) save = false;
+      }
+    }
+
+    if (save) Filter.push(layer);
   });
 
-  return {
-    all: All,
-    layers: Layers,
-    filter: Filter,
-  };
+  console.log('Filter', JSON.stringify(Filter));
+
+  return Filter;
 };

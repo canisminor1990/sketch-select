@@ -1,0 +1,32 @@
+{
+	"type"    : "Shape",
+	"id"      : "38D53BC0-823D-4376-A038-B24D82A274F3",
+	"frame"   : {
+		"x"     : 56,
+		"y"     : 41,
+		"width" : 150,
+		"height": 108
+	},
+	"name"    : "Rectangle",
+	"selected": true,
+	"flow"    : null,
+	"style"   : {
+		"type"   : "Style",
+		"id"     : "826FDC94-2F8A-4151-A5A0-3A1237F2AF9F",
+		"fills"  : [
+			{
+				"color": "#d8d8d8ff",
+				"fill" : "color"
+			}
+		],
+		"borders": [
+			{
+				"color"    : "#979797ff",
+				"fillType" : "color",
+				"position" : "Inside",
+				"thickness": 1
+			}
+		]
+	}
+}
+

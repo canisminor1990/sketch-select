@@ -1,8 +1,6 @@
 import { message } from 'antd';
 import dva from 'dva';
 import createLoading from 'dva-loading';
-
-import router from './router';
 import './index.scss';
 
 // 1. Initialize
@@ -20,7 +18,13 @@ app.model(require('./models/layers').default);
 app.use(createLoading());
 
 // 3. Router
-app.router(router);
+app.router(require('./router').default);
 
 // 4. Start
 app.start('#root');
+
+// 5. Sketch
+window.getSelection = json => localStorage.setItem('selection', JSON.stringify(json));
+
+// Disable the context menu to have a more native feel
+document.addEventListener('contextmenu', e => e.preventDefault());
