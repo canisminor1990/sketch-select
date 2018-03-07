@@ -1,6 +1,6 @@
 {
 	"name": "sketch-select",
-	"version": "3.0.0",
+	"version": "2.0.1",
 	"description": "Make it convenient to select layers with similar attributes.",
 	"repository": {
 		"type": "git",
@@ -36,7 +36,7 @@
 		"build": "yarn build:panel && yarn build:plugin",
 		"build:plugin": "cross-env NODE_ENV=production skpm-build",
 		"build:panel": "roadhog build",
-		"test": "cross-env NODE_ENV=production skpm-build --watch",
+		"publish": "skpm publish",
 		"link": "skpm-link",
 		"lint": "lint-staged",
 		"lint:es": "eslint --fix --ext .js ./"
