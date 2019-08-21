@@ -20,7 +20,7 @@ class WebView extends Component {
       <Switchbox title="Select in all artboards" type="global" />
       <div className={style.btnGroup}>
         <Button onClick={this.onGetBtnClick} className={style.getBtn}>
-          Get Seleciton
+          Get Selection
         </Button>
         <Button onClick={this.onSelectBtnClick} type="primary" className={style.submitBtn}>
           Select
